@@ -22,7 +22,7 @@ public class RobotCentricDrive extends CommandBase {
 
   private void calculate(){
     double YInput = dc.getVelocityY();
-    double XInput = dc.getVelocityX();
+    double XInput = dc.getVelocityRot();
     double calculateLeftSpeed;
     double calculateRightSpeed;
     final double maxSpeed = 1.0;
@@ -31,6 +31,8 @@ public class RobotCentricDrive extends CommandBase {
      * L = 12 * (((Y + abs(Y)*X) + (Y + X)) / 2)
      * R = 12 * (((Y - abs(Y)*X) + (Y - X)) / 2)
      * TODO: Check this calculation
+     * There will be a bug when both Y and X value are 1(Right speed is going to be 0)
+     * This is now solved by multiplying X input by 0.5 inside of the dc so that X input is not going to be 1.
      */
     
     calculateLeftSpeed  = 12 * (((YInput + Math.abs(YInput)*XInput) + (YInput + XInput))/2);

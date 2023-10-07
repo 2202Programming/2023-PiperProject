@@ -60,18 +60,15 @@ public class HID_Xbox_Subsystem extends SubsystemBase {
 
   //boolean limitRotation = true;
   //Scale back the sticks for precision control
-  double scale_xy = 1.0;
-  double scale_rot = 1.0;
+  double scale_y = 1.0;
+  double scale_rot = 0.5;
 
-  //XYRot / Swerve (field or robot relative)
-  ExpoShaper velXShaper;    // left/right  
-  ExpoShaper velYShaper;    // forward/backward 
-  ExpoShaper swRotShaper;   // rotation for XYRot
+  //Tank drive
+  ExpoShaper velYShaper;    //Moving forward/backward
+  ExpoShaper velRotShaper; //Rotational input
 
   //values updated each frame
-  double vel, z_rot;           //arcade
-  double velLeft, velRight;    //tank
-  double velX,velY, xyRot;     //XTRot
+  double velY, velRot;    //tank
   final double deadzone;;
 
   // invertGain is used to change the controls for driving backwards easily.
@@ -94,16 +91,14 @@ public class HID_Xbox_Subsystem extends SubsystemBase {
      * being used.
      */
 
-    // XYRot or Swerve Drive
-    // Rotation on Left-X axis,  X-Y throttle on Right
-    velXShaper = new ExpoShaper(velExpo,  () -> driver.getRightY()); // X robot is Y axis on Joystick
-    velYShaper = new ExpoShaper(velExpo,  () -> driver.getRightX()); // Y robot is X axis on Joystick
-    swRotShaper = new ExpoShaper(rotExpo, () -> driver.getLeftX());
+    // Tank drive
+    // Using leftJoystick for both of the linear and angular controls
+    velYShaper = new ExpoShaper(velExpo,  () -> driver.getRightY()); // Y robot is Y axis on Joystick
+    velRotShaper = new ExpoShaper(velExpo,  () -> driver.getRightX()); //robot rotation is X axis on Joystick
 
     // deadzone for swerve
-    velXShaper.setDeadzone(deadzone);
     velYShaper.setDeadzone(deadzone);
-    swRotShaper.setDeadzone(deadzone);
+    velRotShaper.setDeadzone(deadzone);
 
     // read some values to remove unused warning
     // CHANGED for 2022
@@ -151,35 +146,20 @@ public class HID_Xbox_Subsystem extends SubsystemBase {
     // for all possible modes.  This is a few extra calcs and could be made modal to
     // only read/shape the stick mode.
 
-    //XYRot - field axis, pos X away from driver station, pos y to left side of field
-    //Added scale-factors for low-speed creeper mode
-    velX = -velXShaper.get() * scale_xy;    //invert, so right stick moves robot, right, lowering Y 
-    velY = -velYShaper.get() * scale_xy;    //invert, so forward stick is positive, increase X
-    xyRot = -swRotShaper.get() * scale_rot; //invert, so positive is CCW 
+    velY = velYShaper.get() * scale_y;
+    velRot = velRotShaper.get() * scale_rot;
   }
   
   //public void setLimitRotation(boolean enableLimit) {
   //  this.limitRotation = enableLimit;
   //}
 
-  public double getVelocityX() {
-    return velX;
-  }
-
   public double getVelocityY() {
     return velY;
   }
 
-  public double getXYRotation() {
-    return xyRot;
-  }
-
-  public double getVelocity() {
-    return vel;
-  }
-
-  public double getRotation() {
-    return z_rot;
+  public double getVelocityRot() {
+    return velRot;
   }
 
   public boolean isNormalized() {
@@ -189,8 +169,8 @@ public class HID_Xbox_Subsystem extends SubsystemBase {
   /*
    * Scales the stick, must be between 0.1 and 1.0
    */
-  public void setStickScale(double scale_xy, double scale_rot) {
-   this.scale_xy = MathUtil.clamp(scale_xy, 0.1, 1.0);
+  public void setStickScale(double scale_y, double scale_rot) {
+   this.scale_y = MathUtil.clamp(scale_y, 0.1, 1.0);
    this.scale_rot = MathUtil.clamp(scale_rot, 0.1, 1.0);
   }
 
@@ -199,7 +179,7 @@ public class HID_Xbox_Subsystem extends SubsystemBase {
    */
   public void resetStickScale() {
     this.scale_rot = 1.0;
-    this.scale_xy = 1.0;
+    this.scale_y = 1.0;
   }
 
   /**

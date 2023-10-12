@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 
 public class Intake extends SubsystemBase{
-    /** Creates a new ExampleSubsystem. */
+    /** Creates intake subsystem. */
   public Intake() {}
 
   /**

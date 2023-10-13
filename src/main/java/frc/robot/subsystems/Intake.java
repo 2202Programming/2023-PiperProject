@@ -11,8 +11,23 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class Intake extends SubsystemBase{
     /** Creates intake subsystem. */
-  public Intake() {}
+  public Intake() {
 
+    //TODO - MrL what motors, devices, sensors are part of this system?  
+    //  add them here and put their IDs into Constants.java
+    //  I merged from drivetrain branch so you would have updated Constants.java
+    // get the devices on the robot into code placeholders.
+
+    //TODO - MrL any other sub-systems?  if so add their place holders
+
+
+
+  }
+
+
+  // MrL - general comment, this is an example of having the command code in the same file as the sub-system.
+  //  we don't often do this but it is a workable pattern.
+  
   /**
    * Example command factory method.
    *

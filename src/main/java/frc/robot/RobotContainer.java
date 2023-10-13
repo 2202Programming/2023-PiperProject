@@ -57,7 +57,7 @@ public class RobotContainer {
     }
 
     if (intake != null) {
-      
+      //TODO bind whatever is needed 
     }
 
   }

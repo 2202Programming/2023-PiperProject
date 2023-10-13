@@ -5,19 +5,27 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.hid.HID_Xbox_Subsystem;
 
+/*
+ * Commands for RobotCentricDrive.
+ * Using input from HID_Xbox_Subsystem and claculate the speeds of right/left motors.
+ * Currently front wheel and back wheel is using same calculated output value.
+ * TODO: To check the calculation and output limit
+ * 
+ */
 public class RobotCentricDrive extends CommandBase {
   private final Drivetrain drivetrain;
   private HID_Xbox_Subsystem dc;
   private double leftSpeed;
   private double rightSpeed;
   /** Creates a new RobotCentricDrive. */
-  public RobotCentricDrive(Drivetrain drivetrain, HID_Xbox_Subsystem dc) {
+  public RobotCentricDrive(Drivetrain drivetrain) {
     this.drivetrain = drivetrain;
     addRequirements(drivetrain);
-    this.dc = dc;
+    this.dc = RobotContainer.RC().dc;
   }
 
   private void calculate(){
@@ -30,7 +38,6 @@ public class RobotCentricDrive extends CommandBase {
      * Calculation for constant curvature control
      * L = 12 * (((Y + abs(Y)*X) + (Y + X)) / 2)
      * R = 12 * (((Y - abs(Y)*X) + (Y - X)) / 2)
-     * TODO: Check this calculation
      * There will be a bug when both Y and X value are 1(Right speed is going to be 0)
      * This is now solved by multiplying X input by 0.5 inside of the dc so that X input is not going to be 1.
      */

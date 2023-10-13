@@ -14,6 +14,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class Drivetrain extends SubsystemBase {
   /** Creates a new Drivetrain for tank drive
    * Check differential drive documentation
+   * TODO: In constructor where I defined CANSparkMax, need to define the type of motor before testing
+   * Using differential drive class for tank drive
+   * Read:https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/drive/DifferentialDrive.html
+   * for documentation
    */
   private MotorController FR_Motor;
   private MotorController BR_Motor;
@@ -34,7 +38,6 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public Drivetrain(){
-    //TODO: Motor type
     FR_Motor = new CANSparkMax(1, null);
     BR_Motor = new CANSparkMax(2, null);
     rightMotors = new MotorControllerGroup(FR_Motor, BR_Motor);

@@ -18,7 +18,7 @@ import frc.robot.subsystems.hid.HID_Xbox_Subsystem;
 public class RobotContainer {
   
   private static RobotContainer rc;
-  private HID_Xbox_Subsystem dc;
+  public final HID_Xbox_Subsystem dc;
   private Drivetrain drivetrain;
 
   public static RobotContainer RC() {
@@ -37,7 +37,7 @@ public class RobotContainer {
     configureBindings(Bindings.test);
     // set default commands, if sub-system exists
     if (drivetrain != null) {
-      drivetrain.setDefaultCommand(new RobotCentricDrive(drivetrain,dc));
+      drivetrain.setDefaultCommand(new RobotCentricDrive(drivetrain));
     }
   }
 

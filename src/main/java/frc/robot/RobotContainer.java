@@ -26,6 +26,7 @@ public class RobotContainer {
   private static RobotContainer rc;
   public final HID_Xbox_Subsystem dc;
   private Drivetrain drivetrain;
+  private Intake intake;
 
   public static RobotContainer RC() {
     return rc;
@@ -45,6 +46,8 @@ public class RobotContainer {
     RobotContainer.rc = this; 
     dc = new HID_Xbox_Subsystem(0.3, 0.9, 0.05);
     drivetrain = new Drivetrain();
+    intake = new Intake();
+
 
     configureBindings(Bindings.test);
 
@@ -52,6 +55,11 @@ public class RobotContainer {
     if (drivetrain != null) {
       drivetrain.setDefaultCommand(new RobotCentricDrive(drivetrain));
     }
+
+    if (intake != null) {
+      
+    }
+
   }
 
   private void configureBindings(Bindings bindings) {

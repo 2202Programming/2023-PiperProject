@@ -19,6 +19,10 @@ public class Drivetrain extends SubsystemBase {
    * Read:https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/drive/DifferentialDrive.html
    * for documentation
    */
+
+   // TODO - MrL Check there isn't a 3rd motor controller, I thought the front wheel had its own motor 
+   //  and the back two had two motors ganged together.  (not 100% sure on this)
+   //  This looks like a good start!
   private MotorController FR_Motor;
   private MotorController BR_Motor;
   private MotorControllerGroup rightMotors;
@@ -38,12 +42,18 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public Drivetrain(){
+
+    //TODO MrL - Device ID numbers should come from the Constants file per our convention.
+    //TODO MrL - Are they really SParkMax,  I would have guessed Talon or something older,  good placeholders though.
+    // The specific controller will take up a PWM port on the RIO, see the updated Constants.java
+
     FR_Motor = new CANSparkMax(1, null);
     BR_Motor = new CANSparkMax(2, null);
     rightMotors = new MotorControllerGroup(FR_Motor, BR_Motor);
     FL_Motor = new CANSparkMax(3, null);
     BL_Motor = new CANSparkMax(4, null);
     leftMotors = new MotorControllerGroup(FL_Motor, BL_Motor);
+    // more docs - https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/drive/DifferentialDrive.html
     drive = new DifferentialDrive(leftMotors,rightMotors);
     drive.setExpiration(0.1);
   }
@@ -60,4 +70,8 @@ public class Drivetrain extends SubsystemBase {
   public void stop(){
     drive.tankDrive(0, 0);
   }
+
+
+
+
 }

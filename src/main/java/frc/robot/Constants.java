@@ -28,7 +28,10 @@ public final class Constants {
 
   // PWM assignments on the Rio
   public static final class PWM {
-    // TODO - MrL put the drivetrain pwm ports here
+    public static final int DT_FR = 1;
+    public static final int DT_BR = 2;
+    public static final int DT_FL = 3;
+    public static final int DT_BL = 4;
 
   }
 

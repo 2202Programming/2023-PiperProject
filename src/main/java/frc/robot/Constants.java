@@ -27,6 +27,11 @@ public final class Constants {
   }
 
   public static final class PWM {
+    public static final int DT_FR = 1;
+    public static final int DT_BR = 2;
+    public static final int DT_FL = 3;
+    public static final int DT_BL = 4;
+
     //TODO - change the intake number
     public static final int INTAKE_MOTOR = 8;
     public static final int INTAKE_PNEUMATICS = 9;

@@ -26,15 +26,15 @@ public final class Constants {
 
   }
 
-  // PWM assignments on the Rio
   public static final class PWM {
-    // TODO - MrL put the drivetrain pwm ports here
-
+    //TODO - change the intake number
+    public static final int INTAKE_MOTOR = 8;
+    public static final int INTAKE_PNEUMATICS = 9;
   }
 
   // Digital IO on the RIO
   public static final class DigitalIO {
-    // TODO - MrL encoders will use DIO ports
+    // Encoders will use DIO ports
   }
 
   public static final class AnalogIn {

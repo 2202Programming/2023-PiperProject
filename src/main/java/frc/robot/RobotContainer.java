@@ -31,12 +31,7 @@ public class RobotContainer {
   public static RobotContainer RC() {
     return rc;
   }
-  // The robot's subsystems and commands are defined here...
-  private final Intake m_Intake = new Intake();
 
-  // Replace with CommandPS4Controller or CommandJoystick if needed
-  private final CommandXboxController m_driverController =
-      new CommandXboxController(OperatorConstants.kDriverControllerPort);
 
   enum Bindings {
     test,
@@ -76,17 +71,11 @@ public class RobotContainer {
    * joysticks}.
    */
 
-    // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-    new Trigger(m_Intake::exampleCondition)
-        .onTrue(new ExampleCommand(m_Intake));
 
     switch(bindings) {
       case test:
       default:
     }
-    // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
-    // cancelling on release.
-    m_driverController.b().whileTrue(m_Intake.exampleMethodCommand());
   }
 
   /**

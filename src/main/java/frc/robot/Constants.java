@@ -28,16 +28,18 @@ public final class Constants {
 
   // PWM assignments on the Rio
   public static final class PWM {
-    public static final int DT_FR = 1;
-    public static final int DT_BR = 2;
-    public static final int DT_FL = 3;
-    public static final int DT_BL = 4;
+    public static final int DT_FL = 1;
+    public static final int DT_BL = 2;
+    public static final int DT_FR = 3;
+    public static final int DT_BR = 4;
 
   }
 
   // Digital IO on the RIO
   public static final class DigitalIO {
-    // TODO - MrL encoders will use DIO ports
+    //DIO Ports for encoders
+    public static final int DT_LEFT_ENCODER_A = 1;
+    public static final int DT_LEFT_ENCODER_B = 2;
   }
 
   public static final class AnalogIn {

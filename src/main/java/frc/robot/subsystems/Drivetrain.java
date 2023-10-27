@@ -102,7 +102,7 @@ public class Drivetrain extends SubsystemBase {
     double pseudoRightDistance = leftEncoder.getDistance() + (rightTargetSpeed - leftTargetSpeed) * 
                                       (Math.PI * wheelDiameter) / leftEncoder.getDistancePerPulse();
 
-    // change in distance and cnange in headingを計算
+    // claculate change in distance and cnange in heading
     double deltaDistance = (leftDistance + pseudoRightDistance) / 2.0;
     double deltaHeading = (pseudoRightDistance - leftDistance) / DrivetrainConstants.wheelBaseWidth;
     /*

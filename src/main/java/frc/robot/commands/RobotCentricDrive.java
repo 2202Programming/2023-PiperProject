@@ -31,9 +31,6 @@ public class RobotCentricDrive extends CommandBase {
   private void calculate(){
     double YInput = dc.getVelocityY();
     double XInput = dc.getVelocityRot();
-    double calculateLeftSpeed;
-    double calculateRightSpeed;
-    final double maxOutput = 1.0;
     /*
      * Calculation for constant curvature control
      * L = 12 * (((Y + abs(Y)*X) + (Y + X)) / 2)
@@ -42,22 +39,9 @@ public class RobotCentricDrive extends CommandBase {
      * This is now solved by multiplying X input by 0.5 inside of the dc so that X input is not going to be 1.
      */
     
-    calculateLeftSpeed  = 12 * (((YInput + Math.abs(YInput)*XInput) + (YInput + XInput))/2);
-    calculateRightSpeed = 12 * (((YInput - Math.abs(YInput)*XInput) + (YInput - XInput))/2);
+    leftSpeed  = 12 * (((YInput + Math.abs(YInput)*XInput) + (YInput + XInput))/2);
+    rightSpeed = 12 * (((YInput - Math.abs(YInput)*XInput) + (YInput - XInput))/2);
 
-    //Set limit of output
-    if(calculateLeftSpeed > calculateRightSpeed  && calculateLeftSpeed > maxOutput){
-      double scaleFactor = calculateLeftSpeed/maxOutput;
-      calculateLeftSpeed = calculateLeftSpeed / scaleFactor;
-      calculateRightSpeed = calculateRightSpeed / scaleFactor;
-    }
-    else if(calculateRightSpeed > calculateRightSpeed && calculateRightSpeed > maxOutput){
-      double scaleFactor = calculateRightSpeed /maxOutput;
-      calculateRightSpeed = calculateRightSpeed / scaleFactor;
-      calculateLeftSpeed = calculateLeftSpeed / scaleFactor;
-    }
-    leftSpeed = calculateLeftSpeed;
-    rightSpeed = calculateRightSpeed;
   }
 
   // Called when the command is initially scheduled.

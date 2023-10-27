@@ -82,4 +82,10 @@ public final class Constants {
       }
     }
   }
+
+  public static final class DrivetrainConstants{
+    public static final double MaxSpeed = 1;//m/s
+    public static final double wheelDiameter = 0.15; // Wheel diameter in meters
+    public static final double wheelBaseWidth = 0.6; // Wheel base width in meters //TODO: measure the distance between motors
+  }
 }

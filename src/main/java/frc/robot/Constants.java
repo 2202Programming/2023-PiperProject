@@ -32,8 +32,13 @@ public final class Constants {
     public static final int DT_FL = 3;
     public static final int DT_BL = 4;
 
-    //TODO - change the intake number
-    public static final int INTAKE_MOTOR = 8;
+    //intake motor 1 and motor 2 are the same motor, but one object is bound to motor controller 9 
+    //and the other to 10, even though it's the same motor -ER
+
+   
+    public static final int Intake_MotorControl1 = 9;
+    public static final int Intake_MotorControl2 = 10; 
+    
     public static final int INTAKE_PNEUMATICS = 9;
   }
 

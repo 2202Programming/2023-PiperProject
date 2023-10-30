@@ -19,33 +19,25 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class Intake extends SubsystemBase{
     /** Creates intake subsystem. */
     
-  private final Spark intake_motor;
+    // intake motor 1 and motor 2 are the same motor, but one object is bound to motor controller 9 and the other to 10, even though it's the same motor -ER
+  private final Spark intake_motor1; 
+  private final Spark intake_motor2; 
+
   private final Solenoid intake_pneumatics;
 
 
   public Intake() {
 
     // intake motor is a PW9 and is split into motor controllers 9 and 10!!! - Elena
-    intake_motor = new Spark(PWM.INTAKE_MOTOR);
+    intake_motor1 = new Spark(PWM.Intake_MotorControl1); // motor controller 9 
+    intake_motor2 = new Spark(PWM.Intake_MotorControl2); // motor controller 10 
+
     intake_pneumatics = new Solenoid(PneumaticsModuleType.REVPH, PWM.INTAKE_PNEUMATICS);
 
-
-
-
-    //TODO - MrL what motors, devices, sensors are part of this system?  
-    //  add them here and put their IDs into Constants.java
-
-
-    //  I merged from drivetrain branch so you would have updated Constants.java
-    // get the devices on the robot into code placeholders.
+    // any motors, devices, sensors, etc. add here and define in constants.java
 
 
     //TODO - MrL any other sub-systems?  if so add their place holders
-
-
-
-
-
 
   }
 
@@ -61,7 +53,8 @@ public class Intake extends SubsystemBase{
 
   // turns on and sets speed for motors
   public void intakeMotors_deploy(){
-    intake_motor.set(1);
+    intake_motor1.set(1);
+    intake_motor2.set(1);
   }
 
   /*intake will retract */
@@ -71,7 +64,8 @@ public class Intake extends SubsystemBase{
 
   // turns off motors; sets speed to 0
   public void intakeMotors_retract(){
-    intake_motor.set(0);
+    intake_motor1.set(0);
+    intake_motor2.set(0);
   }
 
   /* TODO: Mr. L, should we combine the motor and pneumatic methods into a full intake on/off method? komei and i were discussing

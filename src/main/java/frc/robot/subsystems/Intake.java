@@ -24,21 +24,20 @@ public class Intake extends SubsystemBase{
 
 
   public Intake() {
+
+    // intake motor is a PW9 and is split into motor controllers 9 and 10!!! - Elena
     intake_motor = new Spark(PWM.INTAKE_MOTOR);
     intake_pneumatics = new Solenoid(PneumaticsModuleType.REVPH, PWM.INTAKE_PNEUMATICS);
+
+
+
+
     //TODO - MrL what motors, devices, sensors are part of this system?  
     //  add them here and put their IDs into Constants.java
 
 
     //  I merged from drivetrain branch so you would have updated Constants.java
     // get the devices on the robot into code placeholders.
-
-    // TODO: find what motor is used to activate the intake mechanism - ER
-
-
-
-
-
 
 
     //TODO - MrL any other sub-systems?  if so add their place holders
@@ -51,21 +50,45 @@ public class Intake extends SubsystemBase{
   }
 
 
-  /*Control for intake pneumatics
+  /*Control for intake mechanisms 
 
-   /*if true, intake will deploy */
-  public void intake_deploy() {
+
+
+   /*intake pneumonics deploy */
+  public void intakePneumonics_deploy() {
     intake_pneumatics.set(true);
-    /*(intake motor speed set to how fast we want it to go) */
+  }
+
+  // turns on and sets speed for motors
+  public void intakeMotors_deploy(){
     intake_motor.set(1);
   }
 
-  /*if false, intake will retract */
-  public void intake_retract() {
+  /*intake will retract */
+  public void intakePneumonics_retract() {
     intake_pneumatics.set(false);
-    /* Intake motor speed set to 0 */
+  }
+
+  // turns off motors; sets speed to 0
+  public void intakeMotors_retract(){
     intake_motor.set(0);
   }
+
+  /* TODO: Mr. L, should we combine the motor and pneumatic methods into a full intake on/off method? komei and i were discussing
+  and he wants them seperate but i feel like it would be more intuitive to have the pneumatics and motor deploy in one method and 
+  pneumatic and motor retract in another method. idk tho you know more than i do ~~ Elena*/ 
+
+  /* like this:
+  public void intakeDeploy(){
+    intake_peumatics.set(true);
+    intake_motor.set(1);
+  }
+
+  public void intakeRetract(){
+    intake_pneumatics.set(false);
+    intake_motor.set(0);
+  }
+   */
 
 
   @Override

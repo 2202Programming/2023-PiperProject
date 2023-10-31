@@ -5,11 +5,16 @@
 package frc.robot.commands.Launch;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Launch;
 
 public class LaunchDeploy extends CommandBase {
   /** Creates a new LaunchDeploy. */
-  public LaunchDeploy() {
+  private Launch launch;
+  public LaunchDeploy(Launch launch) {
     // Use addRequirements() here to declare subsystem dependencies.
+    // Use addRequirements() here to declare subsystem dependencies.
+    this.launch = launch;
+    addRequirements(launch);
   }
 
   // Called when the command is initially scheduled.

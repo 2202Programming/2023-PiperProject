@@ -5,11 +5,15 @@
 package frc.robot.commands.Launch;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Launch;
 
 public class LaunchBallEjector extends CommandBase {
   /** Creates a new LaunchBallEjector. */
-  public LaunchBallEjector() {
+  private Launch launch;
+  public LaunchBallEjector(Launch launch) {
     // Use addRequirements() here to declare subsystem dependencies.
+    this.launch = launch;
+    addRequirements(launch);
   }
 
   // Called when the command is initially scheduled.

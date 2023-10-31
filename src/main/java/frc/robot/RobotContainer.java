@@ -7,6 +7,7 @@ package frc.robot;
 
 import frc.robot.commands.RobotCentricDrive;
 import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Launch;
 import frc.robot.subsystems.hid.HID_Xbox_Subsystem;
 
 /**
@@ -20,6 +21,7 @@ public class RobotContainer {
   private static RobotContainer rc;
   public final HID_Xbox_Subsystem dc;
   private Drivetrain drivetrain;
+  private Launch launch;
 
   public static RobotContainer RC() {
     return rc;
@@ -33,6 +35,7 @@ public class RobotContainer {
     RobotContainer.rc = this; 
     dc = new HID_Xbox_Subsystem(0.3, 0.9, 0.05);
     drivetrain = new Drivetrain();
+    launch = new Launch();
 
     configureBindings(Bindings.test);
     // set default commands, if sub-system exists

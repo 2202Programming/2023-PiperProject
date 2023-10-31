@@ -35,11 +35,11 @@ public final class Constants {
     //intake motor 1 and motor 2 are the same motor, but one object is bound to motor controller 9 
     //and the other to 10, even though it's the same motor -ER
 
-   
-    public static final int Intake_MotorControl1 = 9;
-    public static final int Intake_MotorControl2 = 10; 
+   // electrically this controller goes to 9 & 10
+    public static final int Intake_Motors = 9;
     
-    public static final int INTAKE_PNEUMATICS = 9;
+    
+    
   }
 
   // Digital IO on the RIO
@@ -53,7 +53,11 @@ public final class Constants {
 
   // PWM assignments on the Rio
   public static final class PCM1 {
-    // static final int <name> = 0;
+
+    // dual solenoid for intake
+    public static final int intakeForward = 0;
+    public static final int intakeReverse = 1;
+
 
   }
 

@@ -27,10 +27,10 @@ public final class Constants {
   }
 
   public static final class PWM {
-    public static final int DT_FR = 1;
-    public static final int DT_BR = 2;
-    public static final int DT_FL = 3;
-    public static final int DT_BL = 4;
+    public static final int DT_FL = 1;
+    public static final int DT_BL = 2;
+    public static final int DT_FR = 3;
+    public static final int DT_BR = 4;
 
     //intake motor 1 and motor 2 are the same motor, but one object is bound to motor controller 9 
     //and the other to 10, even though it's the same motor -ER
@@ -44,7 +44,9 @@ public final class Constants {
 
   // Digital IO on the RIO
   public static final class DigitalIO {
-    // Encoders will use DIO ports
+    //DIO Ports for encoders
+    public static final int DT_LEFT_ENCODER_A = 1;
+    public static final int DT_LEFT_ENCODER_B = 2;
   }
 
   public static final class AnalogIn {

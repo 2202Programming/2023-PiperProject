@@ -6,6 +6,7 @@ package frc.robot;
 
 
 import frc.robot.commands.RobotCentricDrive;
+import frc.robot.commands.deploy;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.hid.HID_Xbox_Subsystem;
 import frc.robot.Constants.OperatorConstants;
@@ -73,6 +74,8 @@ public class RobotContainer {
 
     switch(bindings) {
       case test:
+        dc.Operator().povLeft().whileTrue(new deploy(intake)); // intake deploy on left bumper/trigger; 
+
       default:
     }
   }

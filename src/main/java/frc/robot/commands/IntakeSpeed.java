@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.PWM;
 import frc.robot.subsystems.Intake;
 
-/** An example command that uses an example subsystem. */
+
 public class IntakeSpeed extends CommandBase {
     private Intake intake;
     private Spark motors = new Spark(PWM.Intake_Motors); // motor controller
@@ -18,6 +18,7 @@ public class IntakeSpeed extends CommandBase {
     public IntakeSpeed(Intake intake) {
         // Use addRequirements() here to declare subsystem dependencies.
         this.intake = intake;
+        addRequirements(intake);
 
     }
 

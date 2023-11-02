@@ -15,6 +15,7 @@ public class deploy extends CommandBase {
   public deploy(Intake intake) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.intake = intake;
+    addRequirements(intake);
 
 
 

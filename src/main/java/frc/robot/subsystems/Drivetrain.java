@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.motorcontrol.Spark;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.PWM;
 import frc.robot.Constants.DigitalIO;
@@ -121,7 +122,8 @@ public class Drivetrain extends SubsystemBase {
   
   @Override
   public void periodic() {
-
+    SmartDashboard.putNumber("X", x);
+    SmartDashboard.putNumber("Y", y);
   }
 
   public void stop(){

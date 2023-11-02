@@ -5,6 +5,7 @@
 package frc.robot;
 
 
+import frc.robot.commands.IntakeSpeed;
 import frc.robot.commands.RobotCentricDrive;
 import frc.robot.commands.deploy;
 import frc.robot.subsystems.Drivetrain;
@@ -53,6 +54,9 @@ public class RobotContainer {
 
     if (intake != null) {
       //TODO bind whatever is needed 
+      
+      // binds intake motor control to X --ER
+      dc.Operator().x().whileTrue(new IntakeSpeed(intake)); // binds intake motor control to X --ER
     }
 
   }

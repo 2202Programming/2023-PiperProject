@@ -40,6 +40,7 @@ public class Drivetrain extends SubsystemBase {
     FL_Motor = new Spark(PWM.DT_FL);
     BL_Motor = new Spark(PWM.DT_BL);
     leftMotors = new MotorControllerGroup(FL_Motor, BL_Motor);
+    leftMotors.setInverted(true);
     // more docs - https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/drive/DifferentialDrive.html
     drive = new DifferentialDrive(leftMotors,rightMotors);
     drive.setExpiration(0.1);

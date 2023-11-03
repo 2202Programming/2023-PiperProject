@@ -30,7 +30,7 @@ public class RobotCentricDrive extends CommandBase {
 
   private void calculate(){
     double YInput = dc.getVelocityY();
-    double XInput = dc.getVelocityRot();
+    double XInput = -dc.getVelocityRot();
     double calculateLeftSpeed;
     double calculateRightSpeed;
     final double maxOutput = 1.0;

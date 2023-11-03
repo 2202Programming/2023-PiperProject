@@ -53,6 +53,10 @@ public class Intake extends SubsystemBase{
     motors.set(speed);
   }
 
+  public double getIntakeSpeed(){
+    return motors.get();
+  }
+
   @Override
   public void periodic() {
     // not needed for this subsystem

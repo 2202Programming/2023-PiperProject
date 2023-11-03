@@ -12,20 +12,17 @@ import frc.robot.subsystems.Intake;
 
 public class IntakeSpeed extends CommandBase {
     private Intake intake;
-    private Spark motors = new Spark(PWM.Intake_Motors); // motor controller
 
     /** Creates a new deploy. */
     public IntakeSpeed(Intake intake) {
         // Use addRequirements() here to declare subsystem dependencies.
         this.intake = intake;
         addRequirements(intake);
-
     }
 
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        motors.get();
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -34,7 +31,7 @@ public class IntakeSpeed extends CommandBase {
         // if the motor controller has a value that is not zero, (meaning that the motors are going)
         // set the speed to 0, if the motor is not going, set speed to 0.5 -- ER
 
-        if (motors.get() != 0) {              
+        if (intake.getIntakeSpeed() != 0) {              
             intake.intakeSpeed(0.0);
         } else {
             intake.intakeSpeed(0.5);

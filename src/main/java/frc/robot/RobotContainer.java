@@ -55,8 +55,7 @@ public class RobotContainer {
     if (intake != null) {
       //TODO bind whatever is needed 
       
-      // binds intake motor control to X --ER
-      dc.Operator().x().whileTrue(new IntakeSpeed(intake)); // binds intake motor control to X --ER
+
     }
 
   }
@@ -79,7 +78,8 @@ public class RobotContainer {
     switch(bindings) {
       case test:
         dc.Operator().povLeft().whileTrue(new deploy(intake)); // intake deploy on left bumper/trigger; 
-
+              // binds intake motor control to X --ER
+        dc.Operator().x().whileTrue(new IntakeSpeed(intake)); // binds intake motor control to X --ER
       default:
     }
   }

@@ -45,6 +45,9 @@ public class RobotContainer {
     //var driver = dc.Driver();
     //var operator = dc.Operator();
 
+
+  //deploy command button bindings
+/* 
     switch(bindings) {
       case test:
       default:
@@ -60,4 +63,8 @@ public class RobotContainer {
   //  // An example command will be run in autonomous
   //  return Autos.exampleAuto(m_exampleSubsystem);
   //}
+
+  
+  } 
 }
+  

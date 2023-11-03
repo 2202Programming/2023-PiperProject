@@ -4,11 +4,15 @@
 
 package frc.robot;
 
+
+import frc.robot.commands.IntakeSpeed;
+import frc.robot.commands.RobotCentricDrive;
+import frc.robot.commands.deploy;
+import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.hid.HID_Xbox_Subsystem;
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.Autos;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.subsystems.ExampleSubsystem;
-import edu.wpi.first.wpilibj2.command.Command;
+
+import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
@@ -19,19 +23,48 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+  
+  private static RobotContainer rc;
+  public final HID_Xbox_Subsystem dc;
+  private Drivetrain drivetrain;
+  private Intake intake;
 
-  // Replace with CommandPS4Controller or CommandJoystick if needed
-  private final CommandXboxController m_driverController =
-      new CommandXboxController(OperatorConstants.kDriverControllerPort);
-
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
-  public RobotContainer() {
-    // Configure the trigger bindings
-    configureBindings();
+  public static RobotContainer RC() {
+    return rc;
   }
 
+
+  enum Bindings {
+    test,
+  }
+  /** The container for the robot. Contains subsystems, OI devices, and commands. */
+  public RobotContainer() {
+    RobotContainer.rc = this; 
+    dc = new HID_Xbox_Subsystem(0.3, 0.9, 0.05);
+    drivetrain = new Drivetrain();
+    intake = new Intake();
+
+
+    configureBindings(Bindings.test);
+
+    // set default commands, if sub-system exists
+    if (drivetrain != null) {
+      drivetrain.setDefaultCommand(new RobotCentricDrive(drivetrain));
+    }
+
+    if (intake != null) {
+      //TODO bind whatever is needed 
+      
+      // binds intake motor control to X --ER
+      dc.Operator().x().whileTrue(new IntakeSpeed(intake)); // binds intake motor control to X --ER
+    }
+
+  }
+
+  private void configureBindings(Bindings bindings) {
+
+    //var driver = dc.Driver();
+    //var operator = dc.Operator();
   /**
    * Use this method to define your trigger->command mappings. Triggers can be created via the
    * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor with an arbitrary
@@ -41,14 +74,14 @@ public class RobotContainer {
    * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
    * joysticks}.
    */
-  private void configureBindings() {
-    // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-    new Trigger(m_exampleSubsystem::exampleCondition)
-        .onTrue(new ExampleCommand(m_exampleSubsystem));
 
-    // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
-    // cancelling on release.
-    m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
+
+    switch(bindings) {
+      case test:
+        dc.Operator().povLeft().whileTrue(new deploy(intake)); // intake deploy on left bumper/trigger; 
+
+      default:
+    }
   }
 
   /**
@@ -56,8 +89,8 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  public Command getAutonomousCommand() {
-    // An example command will be run in autonomous
-    return Autos.exampleAuto(m_exampleSubsystem);
-  }
+  //public Command getAutonomousCommand() {
+  //  // An example command will be run in autonomous
+  //  return Autos.exampleAuto(m_Intake);
+  //}
 }

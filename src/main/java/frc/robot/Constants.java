@@ -56,6 +56,9 @@ public final class Constants {
   public static final class PCM2 {
   }
 
+  public static final class DrivetrainConstants{
+    public static final double MaxOutput = 0.5;//m/s max output to DifferentialDrive
+  }
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
   }

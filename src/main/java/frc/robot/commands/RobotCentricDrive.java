@@ -13,7 +13,6 @@ import frc.robot.subsystems.hid.HID_Xbox_Subsystem;
  * Commands for RobotCentricDrive.
  * Using input from HID_Xbox_Subsystem and claculate the speeds of right/left motors.
  * Currently front wheel and back wheel is using same calculated output value.
- * TODO: To check the calculation and output limit
  * 
  */
 public class RobotCentricDrive extends CommandBase {
@@ -29,35 +28,13 @@ public class RobotCentricDrive extends CommandBase {
   }
 
   private void calculate(){
+    //new calculation--simply just using Y as base speed and Rot as the difference between left and right
+    //Rot speed can be adjusted by the constant in HID_Xbox_Subsystem
     double YInput = dc.getVelocityY();
-    double XInput = -dc.getVelocityRot();
-    double calculateLeftSpeed;
-    double calculateRightSpeed;
-    final double maxOutput = 1.0;
-    /*
-     * Calculation for constant curvature control
-     * L = 12 * (((Y + abs(Y)*X) + (Y + X)) / 2)
-     * R = 12 * (((Y - abs(Y)*X) + (Y - X)) / 2)
-     * There will be a bug when both Y and X value are 1(Right speed is going to be 0)
-     * This is now solved by multiplying X input by 0.5 inside of the dc so that X input is not going to be 1.
-     */
+    double RotInput = dc.getVelocityRot();
+    leftSpeed= YInput - RotInput;
+    rightSpeed = YInput + RotInput;
     
-    calculateLeftSpeed  = 12 * (((YInput + Math.abs(YInput)*XInput) + (YInput + XInput))/2);
-    calculateRightSpeed = 12 * (((YInput - Math.abs(YInput)*XInput) + (YInput - XInput))/2);
-
-    //Set limit of output
-    if(calculateLeftSpeed > calculateRightSpeed  && calculateLeftSpeed > maxOutput){
-      double scaleFactor = calculateLeftSpeed/maxOutput;
-      calculateLeftSpeed = calculateLeftSpeed / scaleFactor;
-      calculateRightSpeed = calculateRightSpeed / scaleFactor;
-    }
-    else if(calculateRightSpeed > calculateRightSpeed && calculateRightSpeed > maxOutput){
-      double scaleFactor = calculateRightSpeed /maxOutput;
-      calculateRightSpeed = calculateRightSpeed / scaleFactor;
-      calculateLeftSpeed = calculateLeftSpeed / scaleFactor;
-    }
-    leftSpeed = calculateLeftSpeed;
-    rightSpeed = calculateRightSpeed;
   }
 
   // Called when the command is initially scheduled.

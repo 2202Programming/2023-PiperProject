@@ -56,6 +56,12 @@ public final class Constants {
   public static final class PCM2 {
   }
 
+  public static final class DrivetrainConstants{
+    public static final double MaxOutput = 0.5;//m/s max output to DifferentialDrive
+    public static final double MaxSpeed = 1;//m/s
+    public static final double wheelDiameter = 0.15; // Wheel diameter in meters
+    public static final double wheelBaseWidth = 0.6; // Wheel base width in meters //TODO: measure the distance between motors
+  }
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
   }
@@ -83,9 +89,4 @@ public final class Constants {
     }
   }
 
-  public static final class DrivetrainConstants{
-    public static final double MaxSpeed = 1;//m/s
-    public static final double wheelDiameter = 0.15; // Wheel diameter in meters
-    public static final double wheelBaseWidth = 0.6; // Wheel base width in meters //TODO: measure the distance between motors
-  }
 }

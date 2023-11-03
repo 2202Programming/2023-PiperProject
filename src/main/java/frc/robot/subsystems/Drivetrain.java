@@ -35,10 +35,7 @@ public class Drivetrain extends SubsystemBase {
   private final PIDController leftPID;
   private final double maxSpeed;
   private final double wheelDiameter;
-  private double lastLeftEncoderCount;
-  private double lastRightEncoderCount;
-  private double leftDistanceMoved;
-  private double rightDistanceMoved;
+  private double lastLeftEncoderDistance;
   private double heading;
   private double y;
   private double x;
@@ -52,9 +49,11 @@ public class Drivetrain extends SubsystemBase {
     FL_Motor = new Spark(PWM.DT_FL);
     BL_Motor = new Spark(PWM.DT_BL);
     leftMotors = new MotorControllerGroup(FL_Motor, BL_Motor);
+    leftMotors.setInverted(true);
     // more docs - https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/drive/DifferentialDrive.html
     drive = new DifferentialDrive(leftMotors,rightMotors);
     drive.setExpiration(0.1);
+    drive.setMaxOutput(DrivetrainConstants.MaxOutput); //set maxoutput of DifferentialDrive
 
     leftEncoder = new Encoder(DigitalIO.DT_LEFT_ENCODER_A, DigitalIO.DT_LEFT_ENCODER_B);
     leftEncoder.setDistancePerPulse(1.0/360.0);//360 ticks per revolution
@@ -67,11 +66,7 @@ public class Drivetrain extends SubsystemBase {
     x = 0.0; // x position of the robot(initial)
     y = 0.0; // y position of the robot(initial)
     heading = 0.0; // heading of the robot(initial) in radians
-    lastLeftEncoderCount = 0.0;
-    lastRightEncoderCount = 0.0;
-
-    leftDistanceMoved = 0.0;
-    rightDistanceMoved = 0.0;
+    lastLeftEncoderDistance = 0.0;
   }
 
   //Calculate 
@@ -99,7 +94,7 @@ public class Drivetrain extends SubsystemBase {
      * Calculate the distance traveled by each side of the robot
      */
     leftEncoder.setDistancePerPulse((Math.PI * wheelDiameter) / leftEncoder.getDistancePerPulse());
-    double leftDistance = leftEncoder.getDistance() - lastLeftEncoderCount;
+    double leftDistance = leftEncoder.getDistance() - lastLeftEncoderDistance;
     double pseudoRightDistance = leftEncoder.getDistance() + (rightTargetSpeed - leftTargetSpeed) * 
                                       (Math.PI * wheelDiameter) / leftEncoder.getDistancePerPulse();
 
@@ -116,8 +111,7 @@ public class Drivetrain extends SubsystemBase {
     
     heading += deltaHeading;
 
-    lastLeftEncoderCount = leftEncoder.getDistance();
-    lastRightEncoderCount = pseudoRightDistance;
+    lastLeftEncoderDistance = leftEncoder.getDistance();
   }
   
   @Override

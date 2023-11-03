@@ -13,7 +13,6 @@ import frc.robot.subsystems.hid.HID_Xbox_Subsystem;
  * Commands for RobotCentricDrive.
  * Using input from HID_Xbox_Subsystem and claculate the speeds of right/left motors.
  * Currently front wheel and back wheel is using same calculated output value.
- * TODO: To check the calculation and output limit
  * 
  */
 public class RobotCentricDrive extends CommandBase {
@@ -29,19 +28,13 @@ public class RobotCentricDrive extends CommandBase {
   }
 
   private void calculate(){
+    //new calculation--simply just using Y as base speed and Rot as the difference between left and right
+    //Rot speed can be adjusted by the constant in HID_Xbox_Subsystem
     double YInput = dc.getVelocityY();
-    double XInput = dc.getVelocityRot();
-    /*
-     * Calculation for constant curvature control
-     * L = 12 * (((Y + abs(Y)*X) + (Y + X)) / 2)
-     * R = 12 * (((Y - abs(Y)*X) + (Y - X)) / 2)
-     * There will be a bug when both Y and X value are 1(Right speed is going to be 0)
-     * This is now solved by multiplying X input by 0.5 inside of the dc so that X input is not going to be 1.
-     */
+    double RotInput = dc.getVelocityRot();
+    leftSpeed= YInput - RotInput;
+    rightSpeed = YInput + RotInput;
     
-    leftSpeed  = 12 * (((YInput + Math.abs(YInput)*XInput) + (YInput + XInput))/2);
-    rightSpeed = 12 * (((YInput - Math.abs(YInput)*XInput) + (YInput - XInput))/2);
-
   }
 
   // Called when the command is initially scheduled.

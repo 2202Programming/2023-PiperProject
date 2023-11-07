@@ -15,6 +15,9 @@ public class Launch extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
+
+  // TODO: Launch does not use pneumatics- what are the motor controller and PWM values?? ~ER
+
   // public void deploy() {
   //   rt_intake_solenoid.set(DEPLOY);
   //   lt_intake_solenoid.set(DEPLOY);

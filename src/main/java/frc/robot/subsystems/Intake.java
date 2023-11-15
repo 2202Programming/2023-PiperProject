@@ -20,7 +20,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class Intake extends SubsystemBase{
     /** Creates intake subsystem. */
     
-    // intake motor 1 and motor 2 are the same motor, but one object is bound to motor controller 9 and the other to 10, even though it's the same motor -ER
+    // inake motor set to PWM 5, motor 9
   private final Spark motors; 
 
   private final DoubleSolenoid arm;
@@ -28,8 +28,8 @@ public class Intake extends SubsystemBase{
 
   public Intake() {
 
-    // intake motor is a PW9 and is split into motor controllers 9 and 10!!! - Elena
-    motors = new Spark(PWM.Intake_Motors); // motor controller 9 and 10
+   //PWM value 5
+    motors = new Spark(PWM.Intake_Motor); 
 
     arm = new DoubleSolenoid(PneumaticsModuleType.REVPH, PCM1.intakeForward, PCM1.intakeReverse);
 

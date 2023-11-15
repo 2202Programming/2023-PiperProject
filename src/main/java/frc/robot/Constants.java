@@ -32,11 +32,8 @@ public final class Constants {
     public static final int DT_FR = 3;
     public static final int DT_BR = 4;
 
-    //intake motor 1 and motor 2 are the same motor, but one object is bound to motor controller 9 
-    //and the other to 10, even though it's the same motor -ER
 
-   // electrically this controller goes to 9 & 10
-    public static final int Intake_Motors = 9;
+    public static final int Intake_Motor = 5; // intake motor PWM 5
     
     
     

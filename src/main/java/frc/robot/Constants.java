@@ -54,10 +54,8 @@ public final class Constants {
   public static final class PCM1 {
 
     // dual solenoid for intake
-    public static final int intakeForward = 0;
-    public static final int intakeReverse = 1;
-
-
+    public static final int intakeForward = 4;
+    public static final int intakeReverse = 5;
   }
 
   // if we use a second PCM

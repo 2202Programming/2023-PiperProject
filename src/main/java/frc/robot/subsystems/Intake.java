@@ -31,7 +31,7 @@ public class Intake extends SubsystemBase{
    //PWM value 5
     motors = new Spark(PWM.Intake_Motor); 
 
-    arm = new DoubleSolenoid(PneumaticsModuleType.REVPH, PCM1.intakeForward, PCM1.intakeReverse);
+    arm = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, PCM1.intakeForward, PCM1.intakeReverse);
 
   }
 

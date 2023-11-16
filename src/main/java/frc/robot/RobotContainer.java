@@ -8,6 +8,7 @@ package frc.robot;
 import frc.robot.commands.IntakeSpeed;
 import frc.robot.commands.RobotCentricDrive;
 import frc.robot.commands.deploy;
+import frc.robot.commands.retract;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.hid.HID_Xbox_Subsystem;
 import frc.robot.subsystems.Intake;
@@ -73,9 +74,11 @@ public class RobotContainer {
 
     switch(bindings) {
       case test:
-        dc.Operator().povLeft().whileTrue(new deploy(intake)); // intake deploy on left bumper/trigger; 
-              // binds intake motor control to X --ER
+        dc.Operator().leftBumper().onTrue(new deploy(intake)); // intake deploy on pov left
+        dc.Operator().rightBumper().onTrue(new retract(intake));
+        // binds intake motor control to X --ER
         dc.Operator().x().whileTrue(new IntakeSpeed(intake)); // binds intake motor control to X --ER
+     
       default:
     }
   }

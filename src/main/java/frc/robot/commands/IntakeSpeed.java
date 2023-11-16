@@ -20,7 +20,12 @@ public class IntakeSpeed extends CommandBase {
 
     // Called when the command is initially scheduled.
     @Override
-    public void initialize() {
+    public void initialize() {        
+        if (intake.getIntakeSpeed() != 0) {              
+            intake.intakeSpeed(0.0);
+        } else {
+            intake.intakeSpeed(0.5);
+        }
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -29,11 +34,7 @@ public class IntakeSpeed extends CommandBase {
         // if the motor controller has a value that is not zero, (meaning that the motors are going)
         // set the speed to 0, if the motor is not going, set speed to 0.5 -- ER
 
-        if (intake.getIntakeSpeed() != 0) {              
-            intake.intakeSpeed(0.0);
-        } else {
-            intake.intakeSpeed(0.5);
-        }
+
     }
 
     // Called once the command ends or is interrupted.

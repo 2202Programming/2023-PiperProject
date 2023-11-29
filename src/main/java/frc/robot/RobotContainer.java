@@ -74,10 +74,20 @@ public class RobotContainer {
 
     switch(bindings) {
       case test:
-        dc.Operator().leftBumper().onTrue(new deploy(intake)); // intake deploy on pov left
-        dc.Operator().rightBumper().onTrue(new retract(intake));
+      // TODO bind the deploy and retract commands to one button (left bumper) if possible -- ER
+        dc.Operator().leftBumper().onTrue(new deploy(intake)); //intake deploy on left bumper
+        dc.Operator().rightBumper().onTrue(new retract(intake)); // intake retract on right bumper
         // binds intake motor control to X --ER
         dc.Operator().x().whileTrue(new IntakeSpeed(intake)); // binds intake motor control to X --ER
+
+
+        /** TODO set launch subsystem bindings as follows:
+         * pov up for moving the launch mechanism UP
+         * pov down for moving launch mechanism DOWN
+         * right bumper or right trigger for the launch transfer mechanism
+         * either a, b, or y for  launch left and right shooters 
+         * --ER
+        */
      
       default:
     }

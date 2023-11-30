@@ -7,10 +7,10 @@ package frc.robot.commands.Launch;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Launch;
 
-public class LaunchDeploy extends CommandBase {
+public class LaunchUp extends CommandBase {
   /** Creates a new LaunchDeploy. */
   private Launch launch;
-  public LaunchDeploy(Launch launch) {
+  public LaunchUp(Launch launch) {
    
     this.launch = launch;
     addRequirements(launch);

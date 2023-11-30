@@ -7,10 +7,10 @@ package frc.robot.commands.Launch;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Launch;
 
-public class LaunchRetract extends CommandBase {
+public class LaunchDown extends CommandBase {
   /** Creates a new LaunchRetract. */
   private Launch launch;
-  public LaunchRetract(Launch launch) {
+  public LaunchDown(Launch launch) {
     
    
     this.launch = launch;

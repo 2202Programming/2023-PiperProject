@@ -6,6 +6,7 @@ package frc.robot;
 
 
 import frc.robot.commands.RobotCentricDrive;
+import frc.robot.commands.Launch.LaunchSetSpeed;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Launch;
 import frc.robot.subsystems.hid.HID_Xbox_Subsystem;
@@ -50,6 +51,9 @@ public class RobotContainer {
 
     switch(bindings) {
       case test:
+
+      dc.Operator().leftTrigger().onTrue(new LaunchSetSpeed(0.2, launch));
+      
       default:
     }
   }

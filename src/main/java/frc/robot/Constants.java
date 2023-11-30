@@ -32,12 +32,10 @@ public final class Constants {
     public static final int DT_BR = 2;
     public static final int DT_FL = 3;
     public static final int DT_BL = 4;
-    //TODO: Check the fowwowing ports
-    public static final int Launch_FR = 0;
-    public static final int Launch_BR = 0;
-    public static final int Launch_FL = 0;
-    public static final int Launch_BL = 0;
 
+    //TODO: Check the fowwowing ports
+    public static final int LaunchRight = 7;
+    public static final int LaunchLeft = 6;
   }
 
   // Digital IO on the RIO

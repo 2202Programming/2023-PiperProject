@@ -12,19 +12,22 @@ import frc.robot.Constants.PWM;
 
 public class Launch extends SubsystemBase {
   private DoubleSolenoid launch_pneumatic;
-  private Spark FL_Motor;
-  private Spark BL_Motor;
-  private Spark FR_Motor;
-  private Spark BR_Motor;
+  private Spark Left_Motors;
+  private Spark Right_Motors;
+
+
+
 
   /** Creates a new Launch. */
   public Launch() {
-    launch_pneumatic = new DoubleSolenoid(PneumaticsModuleType.REVPH,0,1);//TODO: check PCM Port number
+    launch_pneumatic = new DoubleSolenoid(PneumaticsModuleType.CTREPCM,0,1);//TODO: check PCM Port number
 
-    FL_Motor = new Spark(PWM.Launch_FL);
-    BL_Motor = new Spark(PWM.Launch_BL);
-    FR_Motor = new Spark(PWM.Launch_FR);
-    BR_Motor = new Spark(PWM.Launch_BR);
+    // 1 pwm controls 2 motor controllers
+    Left_Motors = new Spark(PWM.LaunchLeft); // MC 5&6
+    Right_Motors = new Spark(PWM.LaunchRight);  ; // MC 7&8
+   
+    Right_Motors.set(0);
+    Left_Motors.set(0);
   }
 
   @Override
@@ -48,9 +51,8 @@ public class Launch extends SubsystemBase {
   //Move motors at a certain speed 
   //TODO: Check motor direction.
   public void setLaunchSpeed(double speed){
-    FL_Motor.set(speed);
-    BL_Motor.set(speed);
-    FR_Motor.set(speed);
-    BR_Motor.set(speed);
+    Left_Motors.set(speed);
+    Right_Motors.set(speed);
+  
   }
 }

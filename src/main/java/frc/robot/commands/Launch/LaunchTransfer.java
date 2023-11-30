@@ -7,11 +7,11 @@ package frc.robot.commands.Launch;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Launch;
 
-public class LaunchBallEjector extends CommandBase {
+public class LaunchTransfer extends CommandBase {
   // TODO: what actually is the launch ball ejector?? pls explain in detail -- ER
 
   private Launch launch;
-  public LaunchBallEjector(Launch launch) {
+  public LaunchTransfer(Launch launch) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.launch = launch;
     addRequirements(launch);

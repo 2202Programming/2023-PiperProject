@@ -26,13 +26,17 @@ public final class Constants {
 
   }
 
-  // PWM assignments on the Rio
   public static final class PWM {
     public static final int DT_FL = 1;
     public static final int DT_BL = 2;
     public static final int DT_FR = 3;
     public static final int DT_BR = 4;
 
+
+    public static final int Intake_Motor = 5; // intake motor PWM 5
+    
+    
+    
   }
 
   // Digital IO on the RIO
@@ -48,8 +52,10 @@ public final class Constants {
 
   // PWM assignments on the Rio
   public static final class PCM1 {
-    // static final int <name> = 0;
 
+    // dual solenoid for intake
+    public static final int intakeForward = 4;
+    public static final int intakeReverse = 5;
   }
 
   // if we use a second PCM

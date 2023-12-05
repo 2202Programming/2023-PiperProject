@@ -26,7 +26,6 @@ public final class Constants {
 
   }
 
-  // PWM assignments on the Rio
   public static final class PWM {
     public static final int DT_FL = 1;
     public static final int DT_BL = 2;
@@ -53,7 +52,6 @@ public final class Constants {
 
   // PWM assignments on the Rio
   public static final class PCM1 {
-    // static final int <name> = 0;
 
     // dual solenoid for intake
     public static final int intakeForward = 4;

@@ -5,6 +5,7 @@
 package frc.robot;
 
 
+import frc.robot.commands.IntakeSpeed;
 import frc.robot.commands.RobotCentricDrive;
 import frc.robot.commands.deploy;
 import frc.robot.commands.retract;
@@ -23,10 +24,12 @@ public class RobotContainer {
   private static RobotContainer rc;
   public final HID_Xbox_Subsystem dc;
   private Drivetrain drivetrain;
+  private Intake intake;
 
   public static RobotContainer RC() {
     return rc;
   }
+
 
   enum Bindings {
     test,
@@ -36,8 +39,11 @@ public class RobotContainer {
     RobotContainer.rc = this; 
     dc = new HID_Xbox_Subsystem(0.3, 0.9, 0.05);
     drivetrain = new Drivetrain();
+    intake = new Intake();
+
 
     configureBindings(Bindings.test);
+
     // set default commands, if sub-system exists
     if (drivetrain != null) {
       drivetrain.setDefaultCommand(new RobotCentricDrive(drivetrain));
@@ -52,12 +58,20 @@ public class RobotContainer {
   }
 
   private void configureBindings(Bindings bindings) {
+
     //var driver = dc.Driver();
     //var operator = dc.Operator();
+  /**
+   * Use this method to define your trigger->command mappings. Triggers can be created via the
+   * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor with an arbitrary
+   * predicate, or via the named factories in {@link
+   * edu.wpi.first.wpilibj2.command.button.CommandGenericHID}'s subclasses for {@link
+   * CommandXboxController Xbox}/{@link edu.wpi.first.wpilibj2.command.button.CommandPS4Controller
+   * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
+   * joysticks}.
+   */
 
 
-  //deploy command button bindings
-/* 
     switch(bindings) {
       case test:
       // TODO bind the deploy and retract commands to one button (left bumper) if possible -- ER
@@ -86,10 +100,6 @@ public class RobotContainer {
    */
   //public Command getAutonomousCommand() {
   //  // An example command will be run in autonomous
-  //  return Autos.exampleAuto(m_exampleSubsystem);
+  //  return Autos.exampleAuto(m_Intake);
   //}
-
-  
-  } 
 }
-  

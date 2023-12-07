@@ -28,7 +28,6 @@ public class Drivetrain extends SubsystemBase {
   private final MotorController BL_Motor;
   private final MotorControllerGroup leftMotors;
   private final DifferentialDrive drive;
-  private final Encoder leftEncoder;
   
 
   public Drivetrain(){
@@ -43,9 +42,7 @@ public class Drivetrain extends SubsystemBase {
     // more docs - https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/drive/DifferentialDrive.html
     drive = new DifferentialDrive(leftMotors,rightMotors);
     drive.setExpiration(0.1);
-
-    leftEncoder = new Encoder(DigitalIO.DT_LEFT_ENCODER_A, DigitalIO.DT_LEFT_ENCODER_B);
-  }
+}
   //Calculate 
   public void drive(double leftSpeed,double rightSpeed) {
     drive.tankDrive(leftSpeed, rightSpeed);

@@ -9,13 +9,6 @@ import frc.robot.RobotContainer;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.hid.HID_Xbox_Subsystem;
 
-/*
- * Commands for RobotCentricDrive.
- * Using input from HID_Xbox_Subsystem and claculate the speeds of right/left motors.
- * Currently front wheel and back wheel is using same calculated output value.
- * TODO: To check the calculation and output limit
- * 
- */
 public class RobotCentricDrive extends CommandBase {
   private final Drivetrain drivetrain;
   private HID_Xbox_Subsystem dc;

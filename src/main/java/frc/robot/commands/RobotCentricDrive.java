@@ -32,8 +32,10 @@ public class RobotCentricDrive extends CommandBase {
     //Rot speed can be adjusted by the constant in HID_Xbox_Subsystem
     double YInput = dc.getVelocityY();
     double RotInput = dc.getVelocityRot();
-    leftSpeed= YInput - RotInput;
-    rightSpeed = YInput + RotInput;
+    
+    double rotFactor = 1.5; // rotation multiply factor
+    leftSpeed= YInput - RotInput* rotFactor;
+    rightSpeed = YInput + RotInput* rotFactor;
 
 
 
@@ -44,6 +46,7 @@ public class RobotCentricDrive extends CommandBase {
     /*
     //
      //   
+     
      //Calculation for constant curvature control
      //L = 12 * (((Y + abs(Y)*X) + (Y + X)) / 2)
      //R = 12 * (((Y - abs(Y)*X) + (Y - X)) / 2)

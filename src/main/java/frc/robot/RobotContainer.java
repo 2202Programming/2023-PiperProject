@@ -4,7 +4,6 @@
 
 package frc.robot;
 
-
 import frc.robot.commands.IntakeSpeed;
 import frc.robot.commands.RobotCentricDrive;
 import frc.robot.commands.deploy;
@@ -14,13 +13,16 @@ import frc.robot.subsystems.hid.HID_Xbox_Subsystem;
 import frc.robot.subsystems.Intake;
 
 /**
- * This class is where the bulk of the robot should be declared. Since Command-based is a
- * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
- * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
+ * This class is where the bulk of the robot should be declared. Since
+ * Command-based is a
+ * "declarative" paradigm, very little robot logic should actually be handled in
+ * the {@link Robot}
+ * periodic methods (other than the scheduler calls). Instead, the structure of
+ * the robot (including
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
-  
+
   private static RobotContainer rc;
   public final HID_Xbox_Subsystem dc;
   private Drivetrain drivetrain;
@@ -30,17 +32,18 @@ public class RobotContainer {
     return rc;
   }
 
-
   enum Bindings {
     test,
   }
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
+
+  /**
+   * The container for the robot. Contains subsystems, OI devices, and commands.
+   */
   public RobotContainer() {
-    RobotContainer.rc = this; 
+    RobotContainer.rc = this;
     dc = new HID_Xbox_Subsystem(0.3, 0.9, 0.05);
     drivetrain = new Drivetrain();
     intake = new Intake();
-
 
     configureBindings(Bindings.test);
 
@@ -48,47 +51,16 @@ public class RobotContainer {
     if (drivetrain != null) {
       drivetrain.setDefaultCommand(new RobotCentricDrive(drivetrain));
     }
-
-    if (intake != null) {
-
-    }
-
   }
 
-  private void configureBindings(Bindings bindings) {
+  private void configureBindings(Bindings bindings) { // binds buttons to commands
 
-    //var driver = dc.Driver();
-    //var operator = dc.Operator();
-  /**
-   * Use this method to define your trigger->command mappings. Triggers can be created via the
-   * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor with an arbitrary
-   * predicate, or via the named factories in {@link
-   * edu.wpi.first.wpilibj2.command.button.CommandGenericHID}'s subclasses for {@link
-   * CommandXboxController Xbox}/{@link edu.wpi.first.wpilibj2.command.button.CommandPS4Controller
-   * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
-   * joysticks}.
-   */
-
-
-    switch(bindings) {
+    switch (bindings) {
       case test:
-        dc.Operator().leftBumper().onTrue(new deploy(intake)); //intake deploy on left bumper
+        dc.Operator().leftBumper().onTrue(new deploy(intake)); // intake deploy on left bumper
         dc.Operator().rightBumper().onTrue(new retract(intake)); // intake retract on right bumper
-        // binds intake motor control to X --ER
-        dc.Operator().x().whileTrue(new IntakeSpeed(intake)); // binds intake motor control to X --ER
-
-     
+        dc.Operator().x().whileTrue(new IntakeSpeed(intake)); // binds intake motor control to X
       default:
     }
   }
-
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
-  //public Command getAutonomousCommand() {
-  //  // An example command will be run in autonomous
-  //  return Autos.exampleAuto(m_Intake);
-  //}
 }

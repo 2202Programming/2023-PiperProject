@@ -6,9 +6,9 @@ package frc.robot;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
- * numerical or boolean constants. 
- * This class should not be used for any other purpose. 
- * All constants should be declared globally (i.e. public static). 
+ * numerical or boolean constants.
+ * This class should not be used for any other purpose.
+ * All constants should be declared globally (i.e. public static).
  * Do not put anything functional in this class.
  *
  * <p>
@@ -16,9 +16,6 @@ package frc.robot;
  * wherever the constants are needed, to reduce verbosity.
  */
 public final class Constants {
-
-  // RoboRio and CAN ports
-
   public static final class CAN {
     // FRC DEFAULTS
     public static final int PDP = 1; // for rev
@@ -32,39 +29,26 @@ public final class Constants {
     public static final int DT_FL = 3;
     public static final int DT_BL = 4;
 
-
-    public static final int Intake_Motor = 5; // intake motor PWM 5
-    
-    
-    
+    public static final int Intake_Motor = 5;
   }
 
-  // Digital IO on the RIO
   public static final class DigitalIO {
-    //DIO Ports for encoders
     public static final int DT_LEFT_ENCODER_A = 1;
     public static final int DT_LEFT_ENCODER_B = 2;
   }
 
   public static final class AnalogIn {
-    // public static final int MAGAZINE_ANGLE = 0;
   }
 
-  // PWM assignments on the Rio
   public static final class PCM1 {
-
-    // dual solenoid for intake
     public static final int intakeForward = 4;
     public static final int intakeReverse = 5;
   }
 
-  // if we use a second PCM
-  public static final class PCM2 {
+  public static final class DrivetrainConstants {
+    public static final double MaxOutput = 0.5;// m/s max output to DifferentialDrive
   }
 
-  public static final class DrivetrainConstants{
-    public static final double MaxOutput = 0.5;//m/s max output to DifferentialDrive
-  }
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
   }

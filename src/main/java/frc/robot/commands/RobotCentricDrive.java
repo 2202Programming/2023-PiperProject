@@ -20,6 +20,7 @@ public class RobotCentricDrive extends CommandBase {
   private HID_Xbox_Subsystem dc;
   private double leftSpeed;
   private double rightSpeed;
+
   /** Creates a new RobotCentricDrive. */
   public RobotCentricDrive(Drivetrain drivetrain) {
     this.drivetrain = drivetrain;
@@ -27,22 +28,22 @@ public class RobotCentricDrive extends CommandBase {
     this.dc = RobotContainer.RC().dc;
   }
 
-  private void calculate(){
-    //new calculation--simply just using Y as base speed and Rot as the difference between left and right
-    //Rot speed can be adjusted by the constant in HID_Xbox_Subsystem
+  private void calculate() {
+    // using Y as base speed and Rot as the difference between left and right
+    // Rot speed can be adjusted by the constant in HID_Xbox_Subsystem
     double YInput = dc.getVelocityY();
     double RotInput = dc.getVelocityRot();
-    
-    double rotFactor = 1.5; // rotation multiply factor
-    leftSpeed= YInput - RotInput* rotFactor;
-    rightSpeed = YInput + RotInput* rotFactor;
 
-    
+    double rotFactor = 1.5; // rotation multiply factor
+    leftSpeed = YInput - RotInput * rotFactor;
+    rightSpeed = YInput + RotInput * rotFactor;
+
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override

@@ -32,16 +32,17 @@ import frc.robot.subsystems.hid.SwitchboardController.SBButton;
  * run first by being first on the list.
  * 
  * XBox stick signs:
- *   Y stick forward is -1.0, backward is 1.0.
- *   X stick left is -1.0, right is 1.0.
- *  
- * Conventions used robot body axis:
- *    Arcade
- *      Y stick forward creates positive velocity, robot moves forward.
- *      X stick left create positive angular velocity, robots rotates counter-clockwise.
+ * Y stick forward is -1.0, backward is 1.0.
+ * X stick left is -1.0, right is 1.0.
  * 
- *    Tank
- *      Y stick forward will be positive creates positive velocity for that side.
+ * Conventions used robot body axis:
+ * Arcade
+ * Y stick forward creates positive velocity, robot moves forward.
+ * X stick left create positive angular velocity, robots rotates
+ * counter-clockwise.
+ * 
+ * Tank
+ * Y stick forward will be positive creates positive velocity for that side.
  * 
  */
 public class HID_Xbox_Subsystem extends SubsystemBase {
@@ -58,17 +59,17 @@ public class HID_Xbox_Subsystem extends SubsystemBase {
   int initAssistentButtons;
   int initSwitchBoardButtons;
 
-  //boolean limitRotation = true;
-  //Scale back the sticks for precision control
+  // boolean limitRotation = true;
+  // Scale back the sticks for precision control
   double scale_y = 1.0;
   double scale_rot = 0.5;
 
-  //Tank drive
-  ExpoShaper velYShaper;    //Moving forward/backward
-  ExpoShaper velRotShaper; //Rotational input
+  // Tank drive
+  ExpoShaper velYShaper; // Moving forward/backward
+  ExpoShaper velRotShaper; // Rotational input
 
-  //values updated each frame
-  double velY, velRot;    //tank
+  // values updated each frame
+  double velY, velRot; // tank
   final double deadzone;;
 
   // invertGain is used to change the controls for driving backwards easily.
@@ -82,8 +83,9 @@ public class HID_Xbox_Subsystem extends SubsystemBase {
     // register the devices
     driver = (CommandXboxController) registerController(Id.Driver, new CommandXboxController(Id.Driver.value));
     operator = (CommandXboxController) registerController(Id.Operator, new CommandXboxController(Id.Operator.value));
-    switchBoard = (CommandSwitchboardController) registerController(Id.SwitchBoard, new CommandSwitchboardController(Id.SwitchBoard.value));
-   
+    switchBoard = (CommandSwitchboardController) registerController(Id.SwitchBoard,
+        new CommandSwitchboardController(Id.SwitchBoard.value));
+
     this.deadzone = deadzone;
     /**
      * All Joysticks are read and shaped without sign conventions.
@@ -93,8 +95,8 @@ public class HID_Xbox_Subsystem extends SubsystemBase {
 
     // Tank drive
     // Using leftJoystick for both of the linear and angular controls
-    velYShaper = new ExpoShaper(velExpo,  () -> driver.getRightY()); // Y robot is Y axis on Joystick
-    velRotShaper = new ExpoShaper(velExpo,  () -> driver.getRightX()); //robot rotation is X axis on Joystick
+    velYShaper = new ExpoShaper(velExpo, () -> driver.getRightY()); // Y robot is Y axis on Joystick
+    velRotShaper = new ExpoShaper(velExpo, () -> driver.getRightX()); // robot rotation is X axis on Joystick
 
     // deadzone for swerve
     velYShaper.setDeadzone(deadzone);
@@ -123,10 +125,18 @@ public class HID_Xbox_Subsystem extends SubsystemBase {
     return DriverStation.getStickButtons(id.value);
   }
 
-  // accesors for our specific controllers to bind triggers 
-  public CommandXboxController Driver() {return driver; }
-  public CommandXboxController Operator() {return operator;}
-  public CommandSwitchboardController SwitchBoard() {return switchBoard; }
+  // accesors for our specific controllers to bind triggers
+  public CommandXboxController Driver() {
+    return driver;
+  }
+
+  public CommandXboxController Operator() {
+    return operator;
+  }
+
+  public CommandSwitchboardController SwitchBoard() {
+    return switchBoard;
+  }
 
   /**
    * constructor of the implementing class.
@@ -143,16 +153,16 @@ public class HID_Xbox_Subsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler frame and read all stick inputs
-    // for all possible modes.  This is a few extra calcs and could be made modal to
+    // for all possible modes. This is a few extra calcs and could be made modal to
     // only read/shape the stick mode.
 
     velY = velYShaper.get() * scale_y;
     velRot = velRotShaper.get() * scale_rot;
   }
-  
-  //public void setLimitRotation(boolean enableLimit) {
-  //  this.limitRotation = enableLimit;
-  //}
+
+  // public void setLimitRotation(boolean enableLimit) {
+  // this.limitRotation = enableLimit;
+  // }
 
   public double getVelocityY() {
     return velY;
@@ -165,13 +175,13 @@ public class HID_Xbox_Subsystem extends SubsystemBase {
   public boolean isNormalized() {
     return true;
   }
-  
+
   /*
    * Scales the stick, must be between 0.1 and 1.0
    */
   public void setStickScale(double scale_y, double scale_rot) {
-   this.scale_y = MathUtil.clamp(scale_y, 0.1, 1.0);
-   this.scale_rot = MathUtil.clamp(scale_rot, 0.1, 1.0);
+    this.scale_y = MathUtil.clamp(scale_y, 0.1, 1.0);
+    this.scale_rot = MathUtil.clamp(scale_rot, 0.1, 1.0);
   }
 
   /**
@@ -188,82 +198,80 @@ public class HID_Xbox_Subsystem extends SubsystemBase {
    * 
    * Useful to abort commands with an unitl() option.
    * 
-   *   cmd.until(dc::rightStickMotionDriver)
+   * cmd.until(dc::rightStickMotionDriver)
    * 
-   * @return  true - stick moved past deadzone
-   *          false - no stick
+   * @return true - stick moved past deadzone
+   *         false - no stick
    */
   public boolean rightStickMotionDriver() {
     final CommandXboxController device = driver;
     double x = Math.abs(device.getRightX());
     double y = Math.abs(device.getRightY());
     return (x > (deadzone * 2.0)) || (y > (deadzone * 2.0)); // 2x multiplier so doesn't abort too easily
- }
+  }
 
- public boolean rightStickMotionOperator() {
-  final CommandXboxController device = operator;
-  double x = Math.abs(device.getRightX());
-  double y = Math.abs(device.getRightY());
-  return (x > (deadzone * 2.0)) || (y > (deadzone * 2.0)); // 2x multiplier so doesn't abort too easily
-}
-
-
+  public boolean rightStickMotionOperator() {
+    final CommandXboxController device = operator;
+    double x = Math.abs(device.getRightX());
+    double y = Math.abs(device.getRightY());
+    return (x > (deadzone * 2.0)) || (y > (deadzone * 2.0)); // 2x multiplier so doesn't abort too easily
+  }
 
   public int getInitialButtons(final Id id) {
     switch (id) {
-    case Driver:
-      return initSwitchBoardButtons;
-    case Operator:
-      return initAssistentButtons;
-    case SwitchBoard:
-      return initSwitchBoardButtons;
-    default:
-      return 0;
+      case Driver:
+        return initSwitchBoardButtons;
+      case Operator:
+        return initAssistentButtons;
+      case SwitchBoard:
+        return initSwitchBoardButtons;
+      default:
+        return 0;
     }
   }
 
-public boolean readSideboard(SBButton buttonId) {
-  return this.switchBoard.getHID().getRawButton(buttonId.value);
-  // The below isn't working. The above works. We don't have time to debug the below. --nren 02-15-2023 9:50pm
-  // int switches = getInitialButtons(Id.SwitchBoard);
-  // int mask = 1 << (buttonId.value -1);
-  // return (switches & mask) !=0 ? true : false ;
-}
-
-
-public void turnOnRumble(Id id, RumbleType type){
-  switch (id) {
-    case Driver:
-      driver.getHID().setRumble(type, 1);
-    case Operator:
-      operator.getHID().setRumble(type, 1);
-    default:
-      break;
+  public boolean readSideboard(SBButton buttonId) {
+    return this.switchBoard.getHID().getRawButton(buttonId.value);
+    // The below isn't working. The above works. We don't have time to debug the
+    // below. --nren 02-15-2023 9:50pm
+    // int switches = getInitialButtons(Id.SwitchBoard);
+    // int mask = 1 << (buttonId.value -1);
+    // return (switches & mask) !=0 ? true : false ;
   }
-}
 
-public void turnOffRumble(Id id, RumbleType type){
-  switch (id) {
-    case Driver:
-      driver.getHID().setRumble(type, 0);
-    case Operator:
-      operator.getHID().setRumble(type, 0);
-    default:
-      break;
+  public void turnOnRumble(Id id, RumbleType type) {
+    switch (id) {
+      case Driver:
+        driver.getHID().setRumble(type, 1);
+      case Operator:
+        operator.getHID().setRumble(type, 1);
+      default:
+        break;
+    }
   }
-}
 
-public boolean isConnected(Id id){
-  switch (id){
-    case Driver:
-      return driver.getHID().isConnected();
-    case Operator:
-      return operator.getHID().isConnected();
-    case SwitchBoard:
-      return switchBoard.getHID().isConnected();
-    default:
-      return false;
+  public void turnOffRumble(Id id, RumbleType type) {
+    switch (id) {
+      case Driver:
+        driver.getHID().setRumble(type, 0);
+      case Operator:
+        operator.getHID().setRumble(type, 0);
+      default:
+        break;
+    }
   }
-}
+
+  public boolean isConnected(Id id) {
+    switch (id) {
+      case Driver:
+        return driver.getHID().isConnected();
+      case Operator:
+        return operator.getHID().isConnected();
+      case SwitchBoard:
+        return switchBoard.getHID().isConnected();
+      default:
+        return false;
+    }
+  }
 
 }

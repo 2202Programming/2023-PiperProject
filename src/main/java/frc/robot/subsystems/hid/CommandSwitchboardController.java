@@ -17,11 +17,12 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  */
 public class CommandSwitchboardController extends CommandGenericHID {
   private final SwitchboardController m_hid;
-    
+
   /**
    * Construct an instance of a controller.
    *
-   * @param port The port index on the Driver Station that the controller is plugged into.
+   * @param port The port index on the Driver Station that the controller is
+   *             plugged into.
    */
   public CommandSwitchboardController(int port) {
     super(port);
@@ -41,8 +42,9 @@ public class CommandSwitchboardController extends CommandGenericHID {
   /**
    * Constructs an event instance around Sw11's digital signal.
    *
-   * @return an event instance representing Sw11's digital signal attached to the {@link
-   *     CommandScheduler#getDefaultButtonLoop() default scheduler button loop}.
+   * @return an event instance representing Sw11's digital signal attached to the
+   *         {@link
+   *         CommandScheduler#getDefaultButtonLoop() default scheduler button loop}.
    * @see #sw11(EventLoop)
    */
   public Trigger sw11() {
@@ -53,8 +55,8 @@ public class CommandSwitchboardController extends CommandGenericHID {
    * Constructs an event instance around Sw11's digital signal.
    *
    * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing Sw11's digital signal attached to the given
-   *     loop.
+   * @return an event instance representing Sw11's digital signal attached to the
+   *         given loop.
    */
   public Trigger sw11(EventLoop loop) {
     return m_hid.sw11(loop).castTo(Trigger::new);
@@ -63,8 +65,9 @@ public class CommandSwitchboardController extends CommandGenericHID {
   /**
    * Constructs an event instance around Sw12's digital signal.
    *
-   * @return an event instance representing Sw12's digital signal attached to the {@link
-   *     CommandScheduler#getDefaultButtonLoop() default scheduler button loop}.
+   * @return an event instance representing Sw12's digital signal attached to the
+   *         {@link
+   *         CommandScheduler#getDefaultButtonLoop() default scheduler button loop}.
    * @see #sw12(EventLoop)
    */
   public Trigger sw12() {
@@ -75,8 +78,8 @@ public class CommandSwitchboardController extends CommandGenericHID {
    * Constructs an event instance around Sw12's digital signal.
    *
    * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing Sw12's digital signal attached to the given
-   *     loop.
+   * @return an event instance representing Sw12's digital signal attached to the
+   *         given loop.
    */
   public Trigger sw12(EventLoop loop) {
     return m_hid.sw12(loop).castTo(Trigger::new);
@@ -85,8 +88,9 @@ public class CommandSwitchboardController extends CommandGenericHID {
   /**
    * Constructs an event instance around Sw13's digital signal.
    *
-   * @return an event instance representing Sw13's digital signal attached to the {@link
-   *     CommandScheduler#getDefaultButtonLoop() default scheduler button loop}.
+   * @return an event instance representing Sw13's digital signal attached to the
+   *         {@link
+   *         CommandScheduler#getDefaultButtonLoop() default scheduler button loop}.
    * @see #sw13(EventLoop)
    */
   public Trigger sw13() {
@@ -97,8 +101,8 @@ public class CommandSwitchboardController extends CommandGenericHID {
    * Constructs an event instance around Sw13's digital signal.
    *
    * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing Sw13's digital signal attached to the given
-   *     loop.
+   * @return an event instance representing Sw13's digital signal attached to the
+   *         given loop.
    */
   public Trigger sw13(EventLoop loop) {
     return m_hid.sw13(loop).castTo(Trigger::new);
@@ -107,8 +111,9 @@ public class CommandSwitchboardController extends CommandGenericHID {
   /**
    * Constructs an event instance around Sw14's digital signal.
    *
-   * @return an event instance representing Sw14's digital signal attached to the {@link
-   *     CommandScheduler#getDefaultButtonLoop() default scheduler button loop}.
+   * @return an event instance representing Sw14's digital signal attached to the
+   *         {@link
+   *         CommandScheduler#getDefaultButtonLoop() default scheduler button loop}.
    * @see #sw14(EventLoop)
    */
   public Trigger sw14() {
@@ -119,8 +124,8 @@ public class CommandSwitchboardController extends CommandGenericHID {
    * Constructs an event instance around Sw14's digital signal.
    *
    * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing Sw14's digital signal attached to the given
-   *     loop.
+   * @return an event instance representing Sw14's digital signal attached to the
+   *         given loop.
    */
   public Trigger sw14(EventLoop loop) {
     return m_hid.sw14(loop).castTo(Trigger::new);
@@ -129,8 +134,9 @@ public class CommandSwitchboardController extends CommandGenericHID {
   /**
    * Constructs an event instance around Sw15's digital signal.
    *
-   * @return an event instance representing Sw15's digital signal attached to the {@link
-   *     CommandScheduler#getDefaultButtonLoop() default scheduler button loop}.
+   * @return an event instance representing Sw15's digital signal attached to the
+   *         {@link
+   *         CommandScheduler#getDefaultButtonLoop() default scheduler button loop}.
    * @see #sw15(EventLoop)
    */
   public Trigger sw15() {
@@ -141,8 +147,8 @@ public class CommandSwitchboardController extends CommandGenericHID {
    * Constructs an event instance around Sw15's digital signal.
    *
    * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing Sw15's digital signal attached to the given
-   *     loop.
+   * @return an event instance representing Sw15's digital signal attached to the
+   *         given loop.
    */
   public Trigger sw15(EventLoop loop) {
     return m_hid.sw15(loop).castTo(Trigger::new);
@@ -151,8 +157,9 @@ public class CommandSwitchboardController extends CommandGenericHID {
   /**
    * Constructs an event instance around Sw16's digital signal.
    *
-   * @return an event instance representing Sw16's digital signal attached to the {@link
-   *     CommandScheduler#getDefaultButtonLoop() default scheduler button loop}.
+   * @return an event instance representing Sw16's digital signal attached to the
+   *         {@link
+   *         CommandScheduler#getDefaultButtonLoop() default scheduler button loop}.
    * @see #sw16(EventLoop)
    */
   public Trigger sw16() {
@@ -163,8 +170,8 @@ public class CommandSwitchboardController extends CommandGenericHID {
    * Constructs an event instance around Sw16's digital signal.
    *
    * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing Sw16's digital signal attached to the given
-   *     loop.
+   * @return an event instance representing Sw16's digital signal attached to the
+   *         given loop.
    */
   public Trigger sw16(EventLoop loop) {
     return m_hid.sw16(loop).castTo(Trigger::new);
@@ -173,8 +180,9 @@ public class CommandSwitchboardController extends CommandGenericHID {
   /**
    * Constructs an event instance around Sw21's digital signal.
    *
-   * @return an event instance representing Sw21's digital signal attached to the {@link
-   *     CommandScheduler#getDefaultButtonLoop() default scheduler button loop}.
+   * @return an event instance representing Sw21's digital signal attached to the
+   *         {@link
+   *         CommandScheduler#getDefaultButtonLoop() default scheduler button loop}.
    * @see #sw21(EventLoop)
    */
   public Trigger sw21() {
@@ -185,8 +193,8 @@ public class CommandSwitchboardController extends CommandGenericHID {
    * Constructs an event instance around Sw21's digital signal.
    *
    * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing Sw21's digital signal attached to the given
-   *     loop.
+   * @return an event instance representing Sw21's digital signal attached to the
+   *         given loop.
    */
   public Trigger sw21(EventLoop loop) {
     return m_hid.sw21(loop).castTo(Trigger::new);
@@ -195,8 +203,9 @@ public class CommandSwitchboardController extends CommandGenericHID {
   /**
    * Constructs an event instance around Sw22's digital signal.
    *
-   * @return an event instance representing Sw22's digital signal attached to the {@link
-   *     CommandScheduler#getDefaultButtonLoop() default scheduler button loop}.
+   * @return an event instance representing Sw22's digital signal attached to the
+   *         {@link
+   *         CommandScheduler#getDefaultButtonLoop() default scheduler button loop}.
    * @see #sw22(EventLoop)
    */
   public Trigger sw22() {
@@ -207,8 +216,8 @@ public class CommandSwitchboardController extends CommandGenericHID {
    * Constructs an event instance around Sw22's digital signal.
    *
    * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing Sw22's digital signal attached to the given
-   *     loop.
+   * @return an event instance representing Sw22's digital signal attached to the
+   *         given loop.
    */
   public Trigger sw22(EventLoop loop) {
     return m_hid.sw22(loop).castTo(Trigger::new);
@@ -217,8 +226,9 @@ public class CommandSwitchboardController extends CommandGenericHID {
   /**
    * Constructs an event instance around Sw23's digital signal.
    *
-   * @return an event instance representing Sw23's digital signal attached to the {@link
-   *     CommandScheduler#getDefaultButtonLoop() default scheduler button loop}.
+   * @return an event instance representing Sw23's digital signal attached to the
+   *         {@link
+   *         CommandScheduler#getDefaultButtonLoop() default scheduler button loop}.
    * @see #sw23(EventLoop)
    */
   public Trigger sw23() {
@@ -229,8 +239,8 @@ public class CommandSwitchboardController extends CommandGenericHID {
    * Constructs an event instance around Sw23's digital signal.
    *
    * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing Sw23's digital signal attached to the given
-   *     loop.
+   * @return an event instance representing Sw23's digital signal attached to the
+   *         given loop.
    */
   public Trigger sw23(EventLoop loop) {
     return m_hid.sw23(loop).castTo(Trigger::new);
@@ -239,8 +249,9 @@ public class CommandSwitchboardController extends CommandGenericHID {
   /**
    * Constructs an event instance around Sw24's digital signal.
    *
-   * @return an event instance representing Sw24's digital signal attached to the {@link
-   *     CommandScheduler#getDefaultButtonLoop() default scheduler button loop}.
+   * @return an event instance representing Sw24's digital signal attached to the
+   *         {@link
+   *         CommandScheduler#getDefaultButtonLoop() default scheduler button loop}.
    * @see #sw24(EventLoop)
    */
   public Trigger sw24() {
@@ -251,8 +262,8 @@ public class CommandSwitchboardController extends CommandGenericHID {
    * Constructs an event instance around Sw24's digital signal.
    *
    * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing Sw24's digital signal attached to the given
-   *     loop.
+   * @return an event instance representing Sw24's digital signal attached to the
+   *         given loop.
    */
   public Trigger sw24(EventLoop loop) {
     return m_hid.sw24(loop).castTo(Trigger::new);
@@ -261,8 +272,9 @@ public class CommandSwitchboardController extends CommandGenericHID {
   /**
    * Constructs an event instance around Sw25's digital signal.
    *
-   * @return an event instance representing Sw25's digital signal attached to the {@link
-   *     CommandScheduler#getDefaultButtonLoop() default scheduler button loop}.
+   * @return an event instance representing Sw25's digital signal attached to the
+   *         {@link
+   *         CommandScheduler#getDefaultButtonLoop() default scheduler button loop}.
    * @see #sw25(EventLoop)
    */
   public Trigger sw25() {
@@ -273,8 +285,8 @@ public class CommandSwitchboardController extends CommandGenericHID {
    * Constructs an event instance around Sw25's digital signal.
    *
    * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing Sw25's digital signal attached to the given
-   *     loop.
+   * @return an event instance representing Sw25's digital signal attached to the
+   *         given loop.
    */
   public Trigger sw25(EventLoop loop) {
     return m_hid.sw25(loop).castTo(Trigger::new);
@@ -283,8 +295,9 @@ public class CommandSwitchboardController extends CommandGenericHID {
   /**
    * Constructs an event instance around Sw26's digital signal.
    *
-   * @return an event instance representing Sw26's digital signal attached to the {@link
-   *     CommandScheduler#getDefaultButtonLoop() default scheduler button loop}.
+   * @return an event instance representing Sw26's digital signal attached to the
+   *         {@link
+   *         CommandScheduler#getDefaultButtonLoop() default scheduler button loop}.
    * @see #sw26(EventLoop)
    */
   public Trigger sw26() {
@@ -295,12 +308,11 @@ public class CommandSwitchboardController extends CommandGenericHID {
    * Constructs an event instance around Sw26's digital signal.
    *
    * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing Sw26's digital signal attached to the given
-   *     loop.
+   * @return an event instance representing Sw26's digital signal attached to the
+   *         given loop.
    */
   public Trigger sw26(EventLoop loop) {
     return m_hid.sw26(loop).castTo(Trigger::new);
   }
-
 
 }

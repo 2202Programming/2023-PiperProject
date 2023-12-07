@@ -17,32 +17,33 @@ import edu.wpi.first.wpilibj.event.EventLoop;
  * Add your docs here.
  */
 public class SwitchboardController extends GenericHID {
-    
-    public enum SBButton {
-      // Buttons
-      // functional names
-      DelayA(1),DelayB(2),DelayC(3), 
-      //Row1
-      Sw11(1), Sw12(2), Sw13(3), Sw14(4), Sw15(5), Sw16(6),
-      //Row2
-      Sw21(7), Sw22(8), Sw23(9), Sw24(10), Sw25(11), Sw26(12);
-      //Row3
-      //cursed - Sw31(13), Sw32(14), Sw33(15), Sw34(16);
-      
-      @SuppressWarnings({ "MemberName", "PMD.SingularField" })
-      public final int value;
-      private SBButton(final int val) {
-        value = val;
-      }
+
+  public enum SBButton {
+    // Buttons
+    // functional names
+    DelayA(1), DelayB(2), DelayC(3),
+    // Row1
+    Sw11(1), Sw12(2), Sw13(3), Sw14(4), Sw15(5), Sw16(6),
+    // Row2
+    Sw21(7), Sw22(8), Sw23(9), Sw24(10), Sw25(11), Sw26(12);
+    // Row3
+    // cursed - Sw31(13), Sw32(14), Sw33(15), Sw34(16);
+
+    @SuppressWarnings({ "MemberName", "PMD.SingularField" })
+    public final int value;
+
+    private SBButton(final int val) {
+      value = val;
     }
+  }
 
-    public SwitchboardController(final int port){
-     super(port);
-     //hack
-     HAL.report(tResourceType.kResourceType_XboxController, port + 1);
-   }
+  public SwitchboardController(final int port) {
+    super(port);
+    // hack
+    HAL.report(tResourceType.kResourceType_XboxController, port + 1);
+  }
 
-   /**
+  /**
    * Read the value of Sw11 on the switchboard.
    *
    * @return The state of the button.
@@ -154,8 +155,8 @@ public class SwitchboardController extends GenericHID {
    * Constructs an event instance around Sw11's digital signal.
    *
    * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing the Sw11 button's digital signal attached to the given
-   *     loop.
+   * @return an event instance representing the Sw11 button's digital signal
+   *         attached to the given loop.
    */
   public BooleanEvent sw11(EventLoop loop) {
     return new BooleanEvent(loop, this::getSw11);
@@ -165,8 +166,8 @@ public class SwitchboardController extends GenericHID {
    * Constructs an event instance around Sw12's digital signal.
    *
    * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing the Sw12 button's digital signal attached to the given
-   *     loop.
+   * @return an event instance representing the Sw12 button's digital signal
+   *         attached to the given loop.
    */
   public BooleanEvent sw12(EventLoop loop) {
     return new BooleanEvent(loop, this::getSw12);
@@ -176,8 +177,8 @@ public class SwitchboardController extends GenericHID {
    * Constructs an event instance around Sw13's digital signal.
    *
    * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing the Sw13 button's digital signal attached to the given
-   *     loop.
+   * @return an event instance representing the Sw13 button's digital signal
+   *         attached to the given loop.
    */
   public BooleanEvent sw13(EventLoop loop) {
     return new BooleanEvent(loop, this::getSw13);
@@ -187,8 +188,8 @@ public class SwitchboardController extends GenericHID {
    * Constructs an event instance around Sw14's digital signal.
    *
    * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing the Sw14 button's digital signal attached to the given
-   *     loop.
+   * @return an event instance representing the Sw14 button's digital signal
+   *         attached to the given loop.
    */
   public BooleanEvent sw14(EventLoop loop) {
     return new BooleanEvent(loop, this::getSw14);
@@ -198,8 +199,8 @@ public class SwitchboardController extends GenericHID {
    * Constructs an event instance around Sw15's digital signal.
    *
    * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing the Sw15 button's digital signal attached to the given
-   *     loop.
+   * @return an event instance representing the Sw15 button's digital signal
+   *         attached to the given loop.
    */
   public BooleanEvent sw15(EventLoop loop) {
     return new BooleanEvent(loop, this::getSw15);
@@ -209,8 +210,8 @@ public class SwitchboardController extends GenericHID {
    * Constructs an event instance around Sw16's digital signal.
    *
    * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing the Sw16 button's digital signal attached to the given
-   *     loop.
+   * @return an event instance representing the Sw16 button's digital signal
+   *         attached to the given loop.
    */
   public BooleanEvent sw16(EventLoop loop) {
     return new BooleanEvent(loop, this::getSw16);
@@ -220,8 +221,8 @@ public class SwitchboardController extends GenericHID {
    * Constructs an event instance around Sw21's digital signal.
    *
    * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing the Sw21 button's digital signal attached to the given
-   *     loop.
+   * @return an event instance representing the Sw21 button's digital signal
+   *         attached to the given loop.
    */
   public BooleanEvent sw21(EventLoop loop) {
     return new BooleanEvent(loop, this::getSw21);
@@ -231,8 +232,8 @@ public class SwitchboardController extends GenericHID {
    * Constructs an event instance around Sw22's digital signal.
    *
    * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing the Sw22 button's digital signal attached to the given
-   *     loop.
+   * @return an event instance representing the Sw22 button's digital signal
+   *         attached to the given loop.
    */
   public BooleanEvent sw22(EventLoop loop) {
     return new BooleanEvent(loop, this::getSw22);
@@ -242,8 +243,8 @@ public class SwitchboardController extends GenericHID {
    * Constructs an event instance around Sw23's digital signal.
    *
    * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing the Sw23 button's digital signal attached to the given
-   *     loop.
+   * @return an event instance representing the Sw23 button's digital signal
+   *         attached to the given loop.
    */
   public BooleanEvent sw23(EventLoop loop) {
     return new BooleanEvent(loop, this::getSw23);
@@ -253,8 +254,8 @@ public class SwitchboardController extends GenericHID {
    * Constructs an event instance around Sw24's digital signal.
    *
    * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing the Sw24 button's digital signal attached to the given
-   *     loop.
+   * @return an event instance representing the Sw24 button's digital signal
+   *         attached to the given loop.
    */
   public BooleanEvent sw24(EventLoop loop) {
     return new BooleanEvent(loop, this::getSw24);
@@ -264,8 +265,8 @@ public class SwitchboardController extends GenericHID {
    * Constructs an event instance around Sw25's digital signal.
    *
    * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing the Sw25 button's digital signal attached to the given
-   *     loop.
+   * @return an event instance representing the Sw25 button's digital signal
+   *         attached to the given loop.
    */
   public BooleanEvent sw25(EventLoop loop) {
     return new BooleanEvent(loop, this::getSw25);
@@ -275,8 +276,8 @@ public class SwitchboardController extends GenericHID {
    * Constructs an event instance around Sw26's digital signal.
    *
    * @param loop the event loop instance to attach the event to.
-   * @return an event instance representing the Sw26 button's digital signal attached to the given
-   *     loop.
+   * @return an event instance representing the Sw26 button's digital signal
+   *         attached to the given loop.
    */
   public BooleanEvent sw26(EventLoop loop) {
     return new BooleanEvent(loop, this::getSw26);

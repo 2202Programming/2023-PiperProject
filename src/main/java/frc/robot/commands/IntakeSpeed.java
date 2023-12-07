@@ -7,7 +7,6 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.Intake;
 
-
 public class IntakeSpeed extends CommandBase {
     private Intake intake;
 
@@ -20,8 +19,8 @@ public class IntakeSpeed extends CommandBase {
 
     // Called when the command is initially scheduled.
     @Override
-    public void initialize() {        
-        if (intake.getIntakeSpeed() != 0) {              
+    public void initialize() {
+        if (intake.getIntakeSpeed() != 0) {
             intake.intakeSpeed(0.0);
         } else {
             intake.intakeSpeed(0.5);
@@ -31,9 +30,9 @@ public class IntakeSpeed extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        // if the motor controller has a value that is not zero, (meaning that the motors are going)
+        // if the motor controller has a value that is not zero, (meaning that the
+        // motors are going)
         // set the speed to 0, if the motor is not going, set speed to 0.5 -- ER
-
 
     }
 

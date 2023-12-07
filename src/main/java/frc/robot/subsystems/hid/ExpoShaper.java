@@ -40,7 +40,7 @@ public class ExpoShaper {
 
     // create a DoubleSupplier to use
     public double get() {
-        return  expo(applyDeadband(inFunct.getAsDouble()));
+        return expo(applyDeadband(inFunct.getAsDouble()));
     }
 
     /**

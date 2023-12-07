@@ -27,10 +27,10 @@ public final class Constants {
   }
 
   public static final class PWM {
-    public static final int DT_FL = 1;
-    public static final int DT_BL = 2;
-    public static final int DT_FR = 3;
-    public static final int DT_BR = 4;
+    public static final int DT_FR = 1;
+    public static final int DT_BR = 2;
+    public static final int DT_FL = 3;
+    public static final int DT_BL = 4;
 
 
     public static final int Intake_Motor = 5; // intake motor PWM 5
@@ -62,6 +62,9 @@ public final class Constants {
   public static final class PCM2 {
   }
 
+  public static final class DrivetrainConstants{
+    public static final double MaxOutput = 0.5;//m/s max output to DifferentialDrive
+  }
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
   }

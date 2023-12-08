@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.PCM1;
 import frc.robot.Constants.PWM;
+
 public class Launch extends SubsystemBase {
   private DoubleSolenoid launch_pneumatics;
   private DoubleSolenoid transfer_pneumatics;
@@ -23,27 +24,33 @@ public class Launch extends SubsystemBase {
     launch_pneumatics = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, PCM1.launchForward, PCM1.launchReverse);
     transfer_pneumatics = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, PCM1.transferForward, PCM1.transferReverse);
   }
-  public void LaunchDeploy(){
+
+  public void LaunchDeploy() {
     launch_pneumatics.set(DoubleSolenoid.Value.kForward);
   }
-  public void LaunchRetract(){
+
+  public void LaunchRetract() {
     launch_pneumatics.set(DoubleSolenoid.Value.kReverse);
   }
-  public void TransferDeploy(){
+
+  public void TransferDeploy() {
     transfer_pneumatics.set(DoubleSolenoid.Value.kForward);
   }
-  public void TransferRetract(){
+
+  public void TransferRetract() {
     transfer_pneumatics.set(DoubleSolenoid.Value.kReverse);
   }
 
-  public void runMotor(){
-    left_motor.set(0.5);
-    right_motor.set(0.5);
+  public void runMotor(double pct_speed) {
+    left_motor.set(pct_speed);
+    right_motor.set(pct_speed);
   }
-  public void stopMotor(){
+
+  public void stopMotor() {
     left_motor.set(0);
     right_motor.set(0);
   }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

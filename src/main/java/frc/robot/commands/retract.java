@@ -5,14 +5,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.Intake;
 
 public class retract extends CommandBase {
   private Intake intake;
 
   /** Creates a new retract. */
-  public retract(Intake intake) {
-    this.intake = intake;
+  public retract() {
+    this.intake = RobotContainer.RC().intake;
     addRequirements(intake);
   }
 
@@ -24,11 +25,13 @@ public class retract extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+  }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   // Returns true when the command should end.
   @Override

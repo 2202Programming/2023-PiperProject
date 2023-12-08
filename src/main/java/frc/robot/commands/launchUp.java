@@ -5,25 +5,28 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.Launch;
 
 public class launchUp extends CommandBase {
   Launch launch;
   /** Creates a new launchUp. */
-  public launchUp(Launch cntlaunch) {
+  public launchUp() {
     // Use addRequirements() here to declare subsystem dependencies.
-    launch = cntlaunch;
+    launch = RobotContainer.RC().launch;
     addRequirements(launch);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() { 
+    launch.LaunchDeploy();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    launch.LaunchDeploy();
+   
   }
 
   // Called once the command ends or is interrupted.
@@ -33,6 +36,6 @@ public class launchUp extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return true;
   }
 }

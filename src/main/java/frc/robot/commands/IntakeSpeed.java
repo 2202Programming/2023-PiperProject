@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.Intake;
 
 
@@ -12,9 +13,9 @@ public class IntakeSpeed extends CommandBase {
     private Intake intake;
 
     /** Creates a new deploy. */
-    public IntakeSpeed(Intake intake) {
+    public IntakeSpeed() {
         // Use addRequirements() here to declare subsystem dependencies.
-        this.intake = intake;
+        this.intake = RobotContainer.RC().intake;
         addRequirements(intake);
     }
 

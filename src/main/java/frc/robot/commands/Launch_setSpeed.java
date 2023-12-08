@@ -5,21 +5,28 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.Launch;
 
 public class Launch_setSpeed extends CommandBase {
   /** Creates a new ejectBall. */
-  Launch launch;
-  public Launch_setSpeed(Launch cntLaunch) {
+  final Launch launch;
+  final double pct_speed;
+
+  /*
+   * pct_speed - percent +- 0.0  to 1.0 for motor speed
+   */
+  public Launch_setSpeed(double pct_speed) {
     // Use addRequirements() here to declare subsystem dependencies.
-    launch = cntLaunch;
+    this.launch = RobotContainer.RC().launch;
+    this.pct_speed = pct_speed;
     addRequirements(launch);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    launch.runMotor();
+    launch.runMotor(pct_speed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -35,6 +42,8 @@ public class Launch_setSpeed extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+
+    //TODO - Mr. L wants to know when this command should end?
     return false;
   }
 }

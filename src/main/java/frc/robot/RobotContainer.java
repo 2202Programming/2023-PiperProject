@@ -4,7 +4,6 @@
 
 package frc.robot;
 
-
 import frc.robot.commands.IntakeSpeed;
 import frc.robot.commands.Launch_setSpeed;
 import frc.robot.commands.RobotCentricDrive;
@@ -20,30 +19,36 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Launch;
 
 /**
- * This class is where the bulk of the robot should be declared. Since Command-based is a
- * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
- * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
+ * This class is where the bulk of the robot should be declared. Since
+ * Command-based is a
+ * "declarative" paradigm, very little robot logic should actually be handled in
+ * the {@link Robot}
+ * periodic methods (other than the scheduler calls). Instead, the structure of
+ * the robot (including
  * subsystems, commands, and trigger mappings) should be declared here.
  */
 public class RobotContainer {
-  
+
   private static RobotContainer rc;
+  // make public so they can be retrieved with RC().<subsys> in commands
   public final HID_Xbox_Subsystem dc;
-  private Drivetrain drivetrain;
-  private Intake intake;
-  private Launch launch;
+  public final Drivetrain drivetrain;
+  public final Intake intake;
+  public final Launch launch;
 
   public static RobotContainer RC() {
     return rc;
   }
 
-
   enum Bindings {
     test,
   }
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
+
+  /**
+   * The container for the robot. Contains subsystems, OI devices, and commands.
+   */
   public RobotContainer() {
-    RobotContainer.rc = this; 
+    RobotContainer.rc = this;
     dc = new HID_Xbox_Subsystem(0.3, 0.9, 0.05);
     drivetrain = new Drivetrain();
     intake = new Intake();
@@ -56,37 +61,40 @@ public class RobotContainer {
       drivetrain.setDefaultCommand(new RobotCentricDrive(drivetrain));
     }
 
-
   }
 
   private void configureBindings(Bindings bindings) {
 
-    //var driver = dc.Driver();
-    //var operator = dc.Operator();
-  /**
-   * Use this method to define your trigger->command mappings. Triggers can be created via the
-   * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor with an arbitrary
-   * predicate, or via the named factories in {@link
-   * edu.wpi.first.wpilibj2.command.button.CommandGenericHID}'s subclasses for {@link
-   * CommandXboxController Xbox}/{@link edu.wpi.first.wpilibj2.command.button.CommandPS4Controller
-   * PS4} controllers or {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
-   * joysticks}.
-   */
+    // var driver = dc.Driver();
+    // var operator = dc.Operator();
+    /**
+     * Use this method to define your trigger->command mappings. Triggers can be
+     * created via the
+     * {@link Trigger#Trigger(java.util.function.BooleanSupplier)} constructor with
+     * an arbitrary
+     * predicate, or via the named factories in {@link
+     * edu.wpi.first.wpilibj2.command.button.CommandGenericHID}'s subclasses for
+     * {@link
+     * CommandXboxController
+     * Xbox}/{@link edu.wpi.first.wpilibj2.command.button.CommandPS4Controller
+     * PS4} controllers or
+     * {@link edu.wpi.first.wpilibj2.command.button.CommandJoystick Flight
+     * joysticks}.
+     */
 
-
-    switch(bindings) {
+    switch (bindings) {
       case test:
-        dc.Operator().leftBumper().onTrue(new deploy(intake)); //intake deploy on left bumper
-        dc.Operator().rightBumper().onTrue(new retract(intake)); // intake retract on right bumper
+        dc.Operator().leftBumper().onTrue(new deploy()); // intake deploy on left bumper
+        dc.Operator().rightBumper().onTrue(new retract()); // intake retract on right bumper
         // binds intake motor control to X --ER
-        dc.Operator().x().whileTrue(new IntakeSpeed(intake)); // binds intake motor control to X --ER
+        dc.Operator().x().whileTrue(new IntakeSpeed()); // binds intake motor control to X --ER
 
-        dc.Operator().povUp().onTrue(new launchUp(launch));
-        dc.Operator().povDown().onTrue(new launchDown(launch));
-        dc.Operator().povLeft().onTrue(new deployTransfer(launch));
-        dc.Operator().povRight().onTrue(new retractTransfer(launch));
-        dc.Operator().a().whileTrue(new Launch_setSpeed(launch));
-        default:
+        dc.Operator().povUp().onTrue(new launchUp());
+        dc.Operator().povDown().onTrue(new launchDown());
+        dc.Operator().povLeft().onTrue(new deployTransfer());
+        dc.Operator().povRight().onTrue(new retractTransfer());
+        dc.Operator().a().whileTrue(new Launch_setSpeed(0.5));
+      default:
     }
   }
 
@@ -95,8 +103,8 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  //public Command getAutonomousCommand() {
-  //  // An example command will be run in autonomous
-  //  return Autos.exampleAuto(m_Intake);
-  //}
+  // public Command getAutonomousCommand() {
+  // // An example command will be run in autonomous
+  // return Autos.exampleAuto(m_Intake);
+  // }
 }
